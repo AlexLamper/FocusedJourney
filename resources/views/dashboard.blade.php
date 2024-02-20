@@ -15,17 +15,21 @@
     <section class="section">
         <div class="container">
             <h1 class="title">Focus Sessions</h1>
-            <div class="content shadow-lg border">
-{{--                @foreach($focusSessions as $focusSession)--}}
-{{--                    <div class="box">--}}
-{{--                        <h2 class="subtitle">Focus Session</h2>--}}
-{{--                        <p><strong>Start Time:</strong> {{ $focusSession->start_time }}</p>--}}
-{{--                        <p><strong>Duration:</strong> {{ $focusSession->duration }} minutes</p>--}}
-{{--                    </div>--}}
-{{--                @endforeach--}}
+            <div class="content shadow-lg border rounded-lg p-4">
+                <h1>test1</h1>
+            </div>
+            <div class="content shadow-lg border rounded-lg p-4">
+                <h1>test2</h1>
+            </div>
+            <div class="content shadow-lg border rounded-lg p-4">
+                <h1>test3</h1>
+            </div>
+            <div class="content shadow-lg border rounded-lg p-4">
+                <h1>test4</h1>
             </div>
         </div>
     </section>
 </x-app-layout>
+@include('components.footer')
 </body>
 </html>

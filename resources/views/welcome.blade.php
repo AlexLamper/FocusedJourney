@@ -15,7 +15,7 @@
             border-bottom: 1px solid gray;
         }
         .custom-margin-top {
-            margin-top: 12rem;
+            margin-top: 7rem;
         }
     </style>
 </head>
@@ -40,9 +40,18 @@
                         @csrf
                         <div class="field mb-4">
                             <label for="duration" class="label">Focus Duration (minutes)</label>
-                            <div class="control">
-                                <input type="number" name="duration" id="duration" class="input border border-b-2 border-black" style="max-width: 200px;" required>
-                            </div>
+                            @auth
+                                <div class="control">
+                                    <input type="number" name="duration" id="duration" class="input border border-b-2 border-black" style="max-width: 200px;" required>
+                                </div>
+                            @endauth
+
+                            @guest
+                                <p class="mb-1">Please log in or register to use a focus session.</p>
+                                <div class="control">
+                                    <input type="number" name="duration" id="duration" class="input border border-b-2 border-black" style="max-width: 200px;" required disabled>
+                                </div>
+                            @endguest
                         </div>
                         <div class="field">
                             <div class="control">
@@ -95,4 +104,5 @@
             <div class="line"></div>
         </div>
     </x-app-layout>
+    @include('components.footer')
 </body>

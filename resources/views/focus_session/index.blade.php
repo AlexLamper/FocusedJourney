@@ -7,43 +7,55 @@
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <style>
-        /* Add custom styles here */
+        .div-wrapper img {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
     </style>
 </head>
-<body class="antialiased bg-white">
+<body class="antialiased" style="min-height: 100vh; background-size: cover; background-position: center;">
 <x-app-layout>
-    <section class="section">
-        <div class="container">
-            <h1 class="title">Focus Session</h1>
-            <div class="content shadow-lg border p-6">
-                <div class="content shadow-lg border p-6">
-                    @foreach ($focusSessions as $focusSession)
-                        <h2>Focus Duration: {{ $focusSession->duration }}</h2>
-                        <!-- Countdown Timer -->
-                        <div id="countdown_{{ $focusSession->id }}"></div>
-                    @endforeach
+    <section class="section" style="min-height: 93vh; background-image: url('/images/background.png'); display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+            @if($focusSession = $focusSessions->last())
+            <h1 class="title">Focus Session for {{ $focusSession->duration }} minutes.</h1>
+                <div>
+                    <div id="countdown_{{ $focusSession->id }}" style="font-weight: bold; font-size: 2.3rem;"></div>
                 </div>
-            </div>
+            @else
+                <div class="notification is-info">
+                    <p>No focus sessions found.</p>
+                </div>
+            @endif
         </div>
+
+        <!-- Image placed at the bottom -->
+        <img src="/images/creature2.png" alt="Animated GIF" style="align-self: flex-start;">
     </section>
 </x-app-layout>
 
-@push('scripts')
-    @foreach ($focusSessions as $focusSession)
-        <script>
+@foreach ($focusSessions as $focusSession)
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
             var countdown_{{ $focusSession->id }} = {{ $focusSession->duration }} * 60; // Convert minutes to seconds
             var countdownInterval_{{ $focusSession->id }} = setInterval(function() {
                 var minutes = Math.floor(countdown_{{ $focusSession->id }} / 60);
                 var seconds = countdown_{{ $focusSession->id }} % 60;
-                document.getElementById("countdown_{{ $focusSession->id }}").innerText = minutes + "m " + seconds + "s ";
+                var countdownElement = document.getElementById("countdown_{{ $focusSession->id }}");
+                if (countdownElement) {
+                    countdownElement.textContent = minutes + "m " + seconds + "s ";
+                }
                 countdown_{{ $focusSession->id }}--;
                 if (countdown_{{ $focusSession->id }} < 0) {
                     clearInterval(countdownInterval_{{ $focusSession->id }});
-                    document.getElementById("countdown_{{ $focusSession->id }}").innerText = "Focus session ended";
+                    if (countdownElement) {
+                        countdownElement.textContent = "Focus session ended";
+                    }
                 }
             }, 1000);
-        </script>
-    @endforeach
-@endpush
+        });
+    </script>
+@endforeach
 </body>
 </html>
