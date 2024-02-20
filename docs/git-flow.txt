@@ -1,0 +1,13 @@
+Working in main branch:
+-------------------------
+git add .
+git commit -m "Commit message"
+git push
+
+Working in master branch:
+-------------------------
+git add .
+git commit -m "Commit message"
+git push origin master
+(if it's the first time pushing this branch to the remote repository use):
+git push -u origin master
