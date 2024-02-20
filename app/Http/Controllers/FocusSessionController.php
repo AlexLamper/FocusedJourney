@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\FocusSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Carbon;
 
 class FocusSessionController extends Controller
 {
@@ -14,10 +13,12 @@ class FocusSessionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         // Fetch all focus sessions for the authenticated user
         $focusSessions = Auth::user()->focusSessions()->get();
+//        $focusSession = Auth::user()->focusSession()->get()->latest();
 
         return view('focus_session.index', compact('focusSessions'));
     }
@@ -35,21 +36,22 @@ class FocusSessionController extends Controller
             'duration' => 'required|integer|min:1', // Validate duration input
         ]);
 
-        // Calculate the duration in hours:minutes:seconds format
-        $durationInSeconds = $validatedData['duration'] * 60;
-        $hours = floor($durationInSeconds / 3600);
-        $minutes = floor(($durationInSeconds / 60) % 60);
-        $seconds = $durationInSeconds % 60;
+        // Create a new focus session instance
+        $focusSession = new FocusSession();
 
-        // Format the duration based on whether it's more than 60 minutes
-        if ($hours > 0) {
-            $durationFormatted = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
-        } else {
-            $durationFormatted = sprintf('%02d:%02d', $minutes, $seconds);
-        }
+        // Set the attributes
+        $focusSession->user_id = Auth::id();
+        $focusSession->start_time = now();
+        $focusSession->duration = $validatedData['duration'];
 
-        // Redirect to the index page and pass the formatted duration as a parameter
-        return view('focus_session.index', ['duration' => $durationFormatted]);
+        // Save the focus session to the database
+        $focusSession->save();
+
+        // Fetch all focus sessions for the authenticated user
+        $focusSessions = Auth::user()->focusSessions()->get();
+
+        // Redirect to the index page and pass the focus sessions as a parameter
+        return view('focus_session.index', compact('focusSessions'));
     }
 
 

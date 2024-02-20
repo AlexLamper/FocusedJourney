@@ -25,7 +25,7 @@
             <div class="columns">
                 <!-- Left Column (2/3 width) -->
                 <div class="column is-two-thirds">
-                    <h1 class="font-bold mb-2" style="font-size: 2.5rem;">Welcome to the Focused Journey</h1>
+                    <h1 class="font-bold mb-2" style="font-size: 2.5rem; font-weight: bold">Welcome to the Focused Journey</h1>
                     <p class="text-gray-600 mb-6" style="font-size: 1.4rem;">Boost your productivity and focus with our app.</p>
 
                     <!-- Display any success messages -->

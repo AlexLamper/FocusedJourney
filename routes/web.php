@@ -23,7 +23,7 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/focus-session', [FocusSessionController::class, 'index'])->name('focus-session.index');
+Route::get('/focus-sessions', [FocusSessionController::class, 'index'])->name('focus-sessions.index');
 Route::post('/focus-sessions', [FocusSessionController::class, 'store'])->name('focus-sessions.store');
 
 Route::get('/dashboard', function () {

@@ -38,10 +38,10 @@
                 <div class="container">
                     <div class="columns">
                         <div class="column is-two-thirds">
-                            <h1 class="title is-size-1 mb-5">
+                            <h1 class="mb-2" style="font-size: 2.5rem; font-weight: bold">
                                 About Focused Journey
                             </h1>
-                            <p class="subtitle is-size-4">
+                            <p class="text-gray-600 is-size-4 mb-5" style="font-size: 1.4rem;">
                                 Unlock Your Potential with Precision Focus
                             </p>
                             <p style="max-width: 80%">Welcome to Focus App – your productivity companion. Stay focused, organized, and achieve your goals effortlessly. Perfect for students, professionals, and creatives alike. Say hello to efficiency, goodbye to distractions.</p>
