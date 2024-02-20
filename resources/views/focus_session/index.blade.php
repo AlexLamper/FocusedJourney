@@ -16,8 +16,8 @@
 </head>
 <body class="antialiased" style="min-height: 100vh; background-size: cover; background-position: center;">
 <x-app-layout>
-    <section class="section" style="min-height: 93vh; background-image: url('/images/background.png'); display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
+    <section class="section" style="min-height: 93vh; background-image: url('/images/background3.jpg'); display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="background-color: white">
             @if($focusSession = $focusSessions->last())
             <h1 class="title">Focus Session for {{ $focusSession->duration }} minutes.</h1>
                 <div>
@@ -31,7 +31,7 @@
         </div>
 
         <!-- Image placed at the bottom -->
-        <img src="/images/creature2.png" alt="Animated GIF" style="align-self: flex-start;">
+{{--        <img src="/images/creature2.png" alt="Animated GIF" style="align-self: flex-start;">--}}
     </section>
 </x-app-layout>
 

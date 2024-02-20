@@ -55,7 +55,7 @@
                         </div>
                         <div class="field">
                             <div class="control">
-                                <button type="submit" class="button is-primary">Start Focus Session</button>
+                                <button type="submit" class="border-none p-3 rounded-md text-white" style="background-color: #ff7f6e">Start Focus Session</button>
                             </div>
                         </div>
                     </form>
