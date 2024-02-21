@@ -7,6 +7,12 @@
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <style>
+        #font{
+            font-family: "EB Garamond", serif;
+            font-optical-sizing: auto;
+            font-weight: 600;
+            font-style: normal;
+        }
         .line-container {
             width: 70%;
             margin: 0 auto; /* Center horizontally */
@@ -25,8 +31,10 @@
             <div class="columns">
                 <!-- Left Column (2/3 width) -->
                 <div class="column is-two-thirds">
-                    <h1 class="font-bold mb-2" style="font-size: 2.5rem; font-weight: bold">Welcome to the Focused Journey</h1>
-                    <p class="text-gray-600 mb-6" style="font-size: 1.4rem;">Boost your productivity and focus with our app.</p>
+                    <div>
+                        <h1 class="font-bold mb-2" style="font-size: 2.5rem; font-weight: bold">Welcome to Focused Journey</h1>
+                        <p class="text-gray-600 mb-6" style="font-size: 1.4rem;">Boost your productivity and focus with our app.</p>
+                    </div>
 
                     <!-- Display any success messages -->
                     @if (session('success'))
