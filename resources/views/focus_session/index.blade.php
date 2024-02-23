@@ -19,16 +19,56 @@
             background-position: center;
             overflow: hidden;
         }
+
+        .dark-mode {
+            background-image: url("/images/dark-background.jpg");
+        }
+
+        .light-mode {
+            background-image: url("/images/img.jpg");
+        }
+
         #section{
             font-family: "EB Garamond", serif;
             font-optical-sizing: auto;
             font-weight: 600;
             font-style: normal;
         }
+
         .div-wrapper img {
             position: absolute;
             left: 0;
             bottom: 0;
+        }
+
+        .countdown{
+            font-size: 8rem;
+        }
+
+        #quoteText{
+            font-size: 1.5rem;
+        }
+
+        #quoteAuthor{
+            font-size: 1.1rem;
+        }
+
+        @media only screen and (max-width: 1400px){
+            .countdown{
+                font-size: 6rem;
+            }
+        }
+
+        @media only screen and (max-width: 1200px){
+            #quoteText{
+                font-size: 1.3rem;
+            }
+            #quoteAuthor{
+                font-size: 1.1rem;
+            }
+            .countdown{
+                font-size: 4rem;
+            }
         }
 
         /*Settings Styling*/
@@ -135,10 +175,10 @@
                 </button>
             </div>
             <div style="width: 50%; text-align: center;">
-                <div class="p-5">
-                    <h2 style="font-size: 1.7rem; color: white" id="quoteText"></h2>
+                <div class="p-5" style="min-height: 200px">
+                    <h2 style="color: white" id="quoteText"></h2>
                     <br>
-                    <p id="quoteAuthor" style="color: white; font-size: 1.3rem;"></p>
+                    <p id="quoteAuthor" style="color: white;"></p>
                 </div>
                 <button onclick="fetchQuote()">
                     <svg fill="#ffffff" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 489.698 489.698" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M468.999,227.774c-11.4,0-20.8,8.3-20.8,19.8c-1,74.9-44.2,142.6-110.3,178.9c-99.6,54.7-216,5.6-260.6-61l62.9,13.1 c10.4,2.1,21.8-4.2,23.9-15.6c2.1-10.4-4.2-21.8-15.6-23.9l-123.7-26c-7.2-1.7-26.1,3.5-23.9,22.9l15.6,124.8 c1,10.4,9.4,17.7,19.8,17.7c15.5,0,21.8-11.4,20.8-22.9l-7.3-60.9c101.1,121.3,229.4,104.4,306.8,69.3 c80.1-42.7,131.1-124.8,132.1-215.4C488.799,237.174,480.399,227.774,468.999,227.774z"></path> <path d="M20.599,261.874c11.4,0,20.8-8.3,20.8-19.8c1-74.9,44.2-142.6,110.3-178.9c99.6-54.7,216-5.6,260.6,61l-62.9-13.1 c-10.4-2.1-21.8,4.2-23.9,15.6c-2.1,10.4,4.2,21.8,15.6,23.9l123.8,26c7.2,1.7,26.1-3.5,23.9-22.9l-15.6-124.8 c-1-10.4-9.4-17.7-19.8-17.7c-15.5,0-21.8,11.4-20.8,22.9l7.2,60.9c-101.1-121.2-229.4-104.4-306.8-69.2 c-80.1,42.6-131.1,124.8-132.2,215.3C0.799,252.574,9.199,261.874,20.599,261.874z"></path> </g> </g> </g></svg>
@@ -157,14 +197,14 @@
                 </div>
             </div>
         </div>
-        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; margin-top: 100px;">
+        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; margin-top: 40px;">
             @if($focusSession = $focusSessions->last())
                 <div id="parent-div">
                     <div style="text-align: center">
                         <h1 class="title" style="color: white">Keep focus for</h1>
                     </div>
                     <div style="text-align: center">
-                        <div id="countdown_{{ $focusSession->id }}" style="font-weight: bold; font-size: 8rem; color: white"></div>
+                        <div id="countdown_{{ $focusSession->id }}" style="font-weight: bold; color: white" class="countdown"></div>
                     </div>
                 </div>
             @else
@@ -174,15 +214,21 @@
             @endif
         </div>
         <div style="height: 15%; display: flex; justify-content: center;">
-            <div style="width: 30%; display: flex; justify-content: space-between; text-align: center; padding-bottom: 3rem">
+            <div style="width: 20%; display: flex; justify-content: space-between; text-align: center; padding-bottom: 3rem">
                 <div style="width: 33%;">
-                    <button style="color: white">Pause Timer</button>
+                    <button style="color: white">
+                        <svg fill="#ffffff" height="42px" width="37px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M256,0C114.617,0,0,114.615,0,256s114.617,256,256,256s256-114.615,256-256S397.383,0,256,0z M224,320 c0,8.836-7.164,16-16,16h-32c-8.836,0-16-7.164-16-16V192c0-8.836,7.164-16,16-16h32c8.836,0,16,7.164,16,16V320z M352,320 c0,8.836-7.164,16-16,16h-32c-8.836,0-16-7.164-16-16V192c0-8.836,7.164-16,16-16h32c8.836,0,16,7.164,16,16V320z"></path> </g></svg>
+                    </button>
                 </div>
                 <div style="width: 33%;">
-                    <button style="color: white">Reset Timer</button>
+                    <button style="color: white">
+                        <svg height="40px" width="40px" fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3-3 1.331-3 3 1.329 3 3 3z"></path><path d="M20.817 11.186a8.94 8.94 0 0 0-1.355-3.219 9.053 9.053 0 0 0-2.43-2.43 8.95 8.95 0 0 0-3.219-1.355 9.028 9.028 0 0 0-1.838-.18V2L8 5l3.975 3V6.002c.484-.002.968.044 1.435.14a6.961 6.961 0 0 1 2.502 1.053 7.005 7.005 0 0 1 1.892 1.892A6.967 6.967 0 0 1 19 13a7.032 7.032 0 0 1-.55 2.725 7.11 7.11 0 0 1-.644 1.188 7.2 7.2 0 0 1-.858 1.039 7.028 7.028 0 0 1-3.536 1.907 7.13 7.13 0 0 1-2.822 0 6.961 6.961 0 0 1-2.503-1.054 7.002 7.002 0 0 1-1.89-1.89A6.996 6.996 0 0 1 5 13H3a9.02 9.02 0 0 0 1.539 5.034 9.096 9.096 0 0 0 2.428 2.428A8.95 8.95 0 0 0 12 22a9.09 9.09 0 0 0 1.814-.183 9.014 9.014 0 0 0 3.218-1.355 8.886 8.886 0 0 0 1.331-1.099 9.228 9.228 0 0 0 1.1-1.332A8.952 8.952 0 0 0 21 13a9.09 9.09 0 0 0-.183-1.814z"></path></g></svg>
+                    </button>
                 </div>
                 <div style="width: 33%;">
-                    <button style="color: white">Timer Settings</button>
+                    <button style="color: white">
+                        <svg fill="#ffffff" height="30px" width="30px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 482.568 482.568" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M116.993,203.218c13.4-1.8,26.8,2.8,36.3,12.3l24,24l22.7-22.6l-32.8-32.7c-5.1-5.1-5.1-13.4,0-18.5s13.4-5.1,18.5,0 l32.8,32.8l22.7-22.6l-24.1-24.1c-9.5-9.5-14.1-23-12.3-36.3c4-30.4-5.7-62.2-29-85.6c-23.8-23.8-56.4-33.4-87.3-28.8 c-4.9,0.7-6.9,6.8-3.4,10.3l30.9,30.9c14.7,14.7,14.7,38.5,0,53.1l-19,19c-14.7,14.7-38.5,14.7-53.1,0l-31-30.9 c-3.5-3.5-9.5-1.5-10.3,3.4c-4.6,30.9,5,63.5,28.8,87.3C54.793,197.518,86.593,207.218,116.993,203.218z"></path> <path d="M309.193,243.918l-22.7,22.6l134.8,134.8c5.1,5.1,5.1,13.4,0,18.5s-13.4,5.1-18.5,0l-134.8-134.8l-22.7,22.6l138.9,138.9 c17.6,17.6,46.1,17.5,63.7-0.1s17.6-46.1,0.1-63.7L309.193,243.918z"></path> <path d="M361.293,153.918h59.9l59.9-119.7l-29.9-29.9l-119.8,59.8v59.9l-162.8,162.3l-29.3-29.2l-118,118 c-24.6,24.6-24.6,64.4,0,89s64.4,24.6,89,0l118-118l-29.9-29.9L361.293,153.918z"></path> </g> </g> </g></svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -202,13 +248,16 @@
                     <li class="popup-list-item">Theme: Light/Dark</li>
                     <li class="popup-list-item">Font Size: Small/Medium/Large</li>
                     <li class="popup-list-item">Background Image: Choose from gallery</li>
+                    <li class="popup-list-item">
+                        @include('components.toggle-switch', ['onchange' => 'toggleDarkMode'])
+                    </li>
                 </ul>
             </div>
             <div class="popup-section">
                 <div class="popup-title">Notifications</div>
                 <ul class="popup-list">
-                    <li class="popup-list-item">Enable/Disable Desktop Notifications</li>
-                    <li class="popup-list-item">Sound: On/Off</li>
+                    <li class="popup-list-item">Enable Disable Desktop Notifications</li>
+                    <li class="popup-list-item">Sound: OnOff</li>
                 </ul>
             </div>
             <div class="popup-section">
@@ -301,6 +350,17 @@
                 })
                 .catch(error => console.error('Error fetching quote:', error));
         }
+
+        function toggleDarkMode() {
+            var checkbox = document.getElementById("darkModeToggle");
+            var htmlElement = document.querySelector("html");
+            if (checkbox.checked) {
+                htmlElement.style.backgroundImage = "url('/images/dark-background.jpg')";
+            } else {
+                htmlElement.style.backgroundImage = "url('/images/img.jpg')";
+            }
+        }
+
 
     </script>
     <script>
