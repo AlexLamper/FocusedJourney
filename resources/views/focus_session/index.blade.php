@@ -158,6 +158,11 @@
         .popup-close-btn:hover {
             background-color: #ccc;
         }
+
+        .toggle-container {
+            display: flex;
+            align-items: center; /* Align items vertically in the center */
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -245,12 +250,15 @@
             <div class="popup-section">
                 <div class="popup-title">Appearance</div>
                 <ul class="popup-list">
+                    <li class="popup-list-item">
+                        <div class="toggle-container">
+                            <span style="margin-right: 10px">Dark Mode</span>
+                            @include('components.toggle-switch', ['onchange' => 'toggleDarkMode'])
+                        </div>
+                    </li>
                     <li class="popup-list-item">Theme: Light/Dark</li>
                     <li class="popup-list-item">Font Size: Small/Medium/Large</li>
                     <li class="popup-list-item">Background Image: Choose from gallery</li>
-                    <li class="popup-list-item">
-                        @include('components.toggle-switch', ['onchange' => 'toggleDarkMode'])
-                    </li>
                 </ul>
             </div>
             <div class="popup-section">
