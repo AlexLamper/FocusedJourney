@@ -18,6 +18,7 @@
             background-size: cover;
             background-position: center;
             overflow: hidden;
+            font-size: 16px;
         }
 
         .dark-mode {
@@ -163,6 +164,14 @@
             display: flex;
             align-items: center; /* Align items vertically in the center */
         }
+
+        /*Change font size */
+
+        .text-element {
+            font-size: 3.4rem;
+            transition: font-size 0.4s ease;
+        }
+
     </style>
 </head>
 <body class="antialiased">
@@ -181,9 +190,9 @@
             </div>
             <div style="width: 50%; text-align: center;">
                 <div class="p-5" style="min-height: 200px">
-                    <h2 style="color: white" id="quoteText"></h2>
+                    <h2 style="color: white" id="quoteText" class="text-element"></h2>
                     <br>
-                    <p id="quoteAuthor" style="color: white;"></p>
+                    <p id="quoteAuthor" style="color: white;" class="text-element"></p>
                 </div>
                 <button onclick="fetchQuote()">
                     <svg fill="#ffffff" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 489.698 489.698" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M468.999,227.774c-11.4,0-20.8,8.3-20.8,19.8c-1,74.9-44.2,142.6-110.3,178.9c-99.6,54.7-216,5.6-260.6-61l62.9,13.1 c10.4,2.1,21.8-4.2,23.9-15.6c2.1-10.4-4.2-21.8-15.6-23.9l-123.7-26c-7.2-1.7-26.1,3.5-23.9,22.9l15.6,124.8 c1,10.4,9.4,17.7,19.8,17.7c15.5,0,21.8-11.4,20.8-22.9l-7.3-60.9c101.1,121.3,229.4,104.4,306.8,69.3 c80.1-42.7,131.1-124.8,132.1-215.4C488.799,237.174,480.399,227.774,468.999,227.774z"></path> <path d="M20.599,261.874c11.4,0,20.8-8.3,20.8-19.8c1-74.9,44.2-142.6,110.3-178.9c99.6-54.7,216-5.6,260.6,61l-62.9-13.1 c-10.4-2.1-21.8,4.2-23.9,15.6c-2.1,10.4,4.2,21.8,15.6,23.9l123.8,26c7.2,1.7,26.1-3.5,23.9-22.9l-15.6-124.8 c-1-10.4-9.4-17.7-19.8-17.7c-15.5,0-21.8,11.4-20.8,22.9l7.2,60.9c-101.1-121.2-229.4-104.4-306.8-69.2 c-80.1,42.6-131.1,124.8-132.2,215.3C0.799,252.574,9.199,261.874,20.599,261.874z"></path> </g> </g> </g></svg>
@@ -206,15 +215,15 @@
             @if($focusSession = $focusSessions->last())
                 <div id="parent-div">
                     <div style="text-align: center">
-                        <h1 class="title" style="color: white">Keep focus for</h1>
+                        <h1 class="title text-element" style="color: white">Keep focus for</h1>
                     </div>
                     <div style="text-align: center">
-                        <div id="countdown_{{ $focusSession->id }}" style="font-weight: bold; color: white" class="countdown"></div>
+                        <div id="countdown_{{ $focusSession->id }}" style="font-weight: bold; color: white" class="countdown text-element">00:00:00</div>
                     </div>
                 </div>
             @else
                 <div class="notification is-info">
-                    <p>No focus sessions found.</p>
+                    <p class="text-element">No focus sessions found.</p>
                 </div>
             @endif
         </div>
@@ -252,27 +261,39 @@
                 <ul class="popup-list">
                     <li class="popup-list-item">
                         <div class="toggle-container">
-                            <span style="margin-right: 10px">Dark Mode</span>
-                            @include('components.toggle-switch', ['onchange' => 'toggleDarkMode'])
+                            <span style="margin-right: 10px">Dark Mode:</span>
+                            @include('components.dark-toggle-switch', ['onchange' => 'toggleDarkMode'])
                         </div>
                     </li>
-                    <li class="popup-list-item">Theme: Light/Dark</li>
-                    <li class="popup-list-item">Font Size: Small/Medium/Large</li>
-                    <li class="popup-list-item">Background Image: Choose from gallery</li>
+                    <li class="popup-list-item">
+                        <div class="toggle-container">
+                            <span style="margin-right: 10px">Small Font Size:</span>
+                            @include('components.font-size-switch', ['onchange' => 'toggleFontSize()'])
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="popup-section">
                 <div class="popup-title">Notifications</div>
                 <ul class="popup-list">
-                    <li class="popup-list-item">Enable Disable Desktop Notifications</li>
-                    <li class="popup-list-item">Sound: OnOff</li>
+                    <li class="popup-list-item">
+                        <div class="toggle-container">
+                            <span style="margin-right: 10px">Desktop Notifications:</span>
+                            Off
+                        </div>
+                    </li>
+                    <li class="popup-list-item">
+                        <div class="toggle-container">
+                            <span style="margin-right: 10px">Sound:</span>
+                            Off
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="popup-section">
                 <div class="popup-title">Account</div>
                 <ul class="popup-list">
-                    <li class="popup-list-item">Change Password</li>
-                    <li class="popup-list-item">Logout</li>
+                    <li class="popup-list-item"><a href="profile" style="color: #2563eb">Go to profile</a></li>
                 </ul>
             </div>
         </div>
@@ -369,7 +390,24 @@
             }
         }
 
+    </script>
+    <script>
+        function toggleFontSize() {
+            var checkbox = document.getElementById("fontSizeToggle");
+            var textElements = document.querySelectorAll(".text-element");
 
+            if (checkbox.checked) {
+                textElements.forEach(function(element) {
+                    var computedStyle = window.getComputedStyle(element);
+                    var currentFontSize = parseFloat(computedStyle.getPropertyValue('font-size'));
+                    element.style.fontSize = (currentFontSize / 1.2) + 'px';
+                });
+            } else {
+                textElements.forEach(function(element) {
+                    element.style.fontSize = ''; // Revert to default font size
+                });
+            }
+        }
     </script>
     <script>
         let hasBeenCalled = false;
