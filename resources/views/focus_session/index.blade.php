@@ -41,32 +41,6 @@
             bottom: 0;
         }
 
-        #quoteText{
-            font-size: 1.5rem;
-        }
-
-        #quoteAuthor{
-            font-size: 1.1rem;
-        }
-
-        @media only screen and (max-width: 1400px){
-            .countdown{
-                font-size: 6rem;
-            }
-        }
-
-        @media only screen and (max-width: 1200px){
-            #quoteText{
-                font-size: 1.3rem;
-            }
-            #quoteAuthor{
-                font-size: 1.1rem;
-            }
-            .countdown{
-                font-size: 4rem;
-            }
-        }
-
         /*Settings Styling*/
         #overlay {
             display: none;
@@ -162,13 +136,35 @@
 
         /*Change font size */
 
+        #quoteText{
+            font-size: 1.5rem;
+        }
+
+        #quoteAuthor{
+            font-size: 1.1rem;
+        }
+
+        @media only screen and (max-width: 1100px){
+            #quoteText{
+                font-size: 1.3rem;
+            }
+            #quoteAuthor{
+                font-size: 1.1rem;
+            }
+        }
+
         .text-element {
             font-size: 3.4rem;
             transition: font-size 0.4s ease;
         }
 
         .focus-title{
-            font-size: 2.3rem;
+            font-size: 2.8rem;
+            transition: font-size 0.4s ease;
+        }
+
+        .countdown{
+            font-size: 8rem;
             transition: font-size 0.4s ease;
         }
 
@@ -215,10 +211,10 @@
             @if($focusSession = $focusSessions->last())
                 <div id="parent-div">
                     <div style="text-align: center">
-                        <h1 class="focus-title" style="color: white; font-size: 2.5rem">Keep focus for</h1>
+                        <h1 class="focus-title" style="color: white; font-size: 2.8rem">Keep focus for</h1>
                     </div>
                     <div style="text-align: center">
-                        <div id="countdown_{{ $focusSession->id }}" style="font-weight: bold; color: white; font-size: 5rem" class="countdown text-element">00:00:00</div>
+                        <div id="countdown_{{ $focusSession->id }}" style="font-weight: bold; color: white; font-size: 8rem; margin-top: -20px" class="countdown">00:00:00</div>
                     </div>
                 </div>
             @else
@@ -231,12 +227,12 @@
             <div style="width: 30%; display: flex; justify-content: space-between; text-align: center; padding-bottom: 3rem">
                 <div style="width: 33%; border: solid 2px rgba(255, 255, 255, 0.6); border-radius: 10px; padding: 5px 15px; margin: 10px">
                     <button style="color: white">
-                        <svg fill="rgba(255, 255, 255, 0.8)" height="30px" width="30px" style="margin-top: 5px;" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M256,0C114.617,0,0,114.615,0,256s114.617,256,256,256s256-114.615,256-256S397.383,0,256,0z M224,320 c0,8.836-7.164,16-16,16h-32c-8.836,0-16-7.164-16-16V192c0-8.836,7.164-16,16-16h32c8.836,0,16,7.164,16,16V320z M352,320 c0,8.836-7.164,16-16,16h-32c-8.836,0-16-7.164-16-16V192c0-8.836,7.164-16,16-16h32c8.836,0,16,7.164,16,16V320z"></path> </g></svg>
+                        <svg height="30px" width="30px" style="margin-top: 5px;" fill="rgba(255, 255, 255, 0.8)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="rgba(255, 255, 255, 0.8)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3-3 1.331-3 3 1.329 3 3 3z"></path><path d="M20.817 11.186a8.94 8.94 0 0 0-1.355-3.219 9.053 9.053 0 0 0-2.43-2.43 8.95 8.95 0 0 0-3.219-1.355 9.028 9.028 0 0 0-1.838-.18V2L8 5l3.975 3V6.002c.484-.002.968.044 1.435.14a6.961 6.961 0 0 1 2.502 1.053 7.005 7.005 0 0 1 1.892 1.892A6.967 6.967 0 0 1 19 13a7.032 7.032 0 0 1-.55 2.725 7.11 7.11 0 0 1-.644 1.188 7.2 7.2 0 0 1-.858 1.039 7.028 7.028 0 0 1-3.536 1.907 7.13 7.13 0 0 1-2.822 0 6.961 6.961 0 0 1-2.503-1.054 7.002 7.002 0 0 1-1.89-1.89A6.996 6.996 0 0 1 5 13H3a9.02 9.02 0 0 0 1.539 5.034 9.096 9.096 0 0 0 2.428 2.428A8.95 8.95 0 0 0 12 22a9.09 9.09 0 0 0 1.814-.183 9.014 9.014 0 0 0 3.218-1.355 8.886 8.886 0 0 0 1.331-1.099 9.228 9.228 0 0 0 1.1-1.332A8.952 8.952 0 0 0 21 13a9.09 9.09 0 0 0-.183-1.814z"></path></g></svg>
                     </button>
                 </div>
-                <div style="width: 33%; border: solid 2px rgba(255, 255, 255, 0.6); border-radius: 10px; padding: 5px 15px; margin: 10px">
+                <div id="pauseButton" style="width: 33%; border: solid 2px rgba(255, 255, 255, 0.6); border-radius: 10px; padding: 5px 15px; margin: 10px">
                     <button style="color: white">
-                        <svg height="30px" width="30px" style="margin-top: 5px;" fill="rgba(255, 255, 255, 0.8)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="rgba(255, 255, 255, 0.8)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3-3 1.331-3 3 1.329 3 3 3z"></path><path d="M20.817 11.186a8.94 8.94 0 0 0-1.355-3.219 9.053 9.053 0 0 0-2.43-2.43 8.95 8.95 0 0 0-3.219-1.355 9.028 9.028 0 0 0-1.838-.18V2L8 5l3.975 3V6.002c.484-.002.968.044 1.435.14a6.961 6.961 0 0 1 2.502 1.053 7.005 7.005 0 0 1 1.892 1.892A6.967 6.967 0 0 1 19 13a7.032 7.032 0 0 1-.55 2.725 7.11 7.11 0 0 1-.644 1.188 7.2 7.2 0 0 1-.858 1.039 7.028 7.028 0 0 1-3.536 1.907 7.13 7.13 0 0 1-2.822 0 6.961 6.961 0 0 1-2.503-1.054 7.002 7.002 0 0 1-1.89-1.89A6.996 6.996 0 0 1 5 13H3a9.02 9.02 0 0 0 1.539 5.034 9.096 9.096 0 0 0 2.428 2.428A8.95 8.95 0 0 0 12 22a9.09 9.09 0 0 0 1.814-.183 9.014 9.014 0 0 0 3.218-1.355 8.886 8.886 0 0 0 1.331-1.099 9.228 9.228 0 0 0 1.1-1.332A8.952 8.952 0 0 0 21 13a9.09 9.09 0 0 0-.183-1.814z"></path></g></svg>
+                        <svg fill="rgba(255, 255, 255, 0.8)" height="30px" width="30px" style="margin-top: 5px;" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M256,0C114.617,0,0,114.615,0,256s114.617,256,256,256s256-114.615,256-256S397.383,0,256,0z M224,320 c0,8.836-7.164,16-16,16h-32c-8.836,0-16-7.164-16-16V192c0-8.836,7.164-16,16-16h32c8.836,0,16,7.164,16,16V320z M352,320 c0,8.836-7.164,16-16,16h-32c-8.836,0-16-7.164-16-16V192c0-8.836,7.164-16,16-16h32c8.836,0,16,7.164,16,16V320z"></path> </g></svg>
                     </button>
                 </div>
                 <div style="width: 33%; border: solid 2px rgba(255, 255, 255, 0.6); border-radius: 10px; padding: 5px 15px; margin: 10px">
@@ -326,31 +322,60 @@
             }
         }
 
-        var countdown_{{ $focusSession->id }} = {{ $focusSession->duration }} * 60; // Convert minutes to seconds
-        var countdownInterval_{{ $focusSession->id }} = setInterval(function() {
-            var hours = Math.floor(countdown_{{ $focusSession->id }} / 3600);
-            var minutes = Math.floor((countdown_{{ $focusSession->id }} % 3600) / 60);
-            var seconds = countdown_{{ $focusSession->id }} % 60;
-            var countdownElement = document.getElementById("countdown_{{ $focusSession->id }}");
-            if (countdownElement) {
-                var countdownText = '';
-                if (hours > 0) {
-                    countdownText += pad(hours) + "h ";
-                }
-                if (hours > 0 || minutes > 0) {
-                    countdownText += pad(minutes) + "m ";
-                }
-                countdownText += pad(seconds) + "s";
-                countdownElement.textContent = countdownText;
+        var countdown_{{ $focusSession->id }} = {{ $focusSession->duration }} * 60;
+        var countdownInterval_{{ $focusSession->id }};
+
+        // Start the timer on page load
+        startTimer();
+
+        document.getElementById('pauseButton').addEventListener('click', function() {
+            if (isTimerPaused) {
+                resumeTimer();
+            } else {
+                pauseTimer();
             }
-            countdown_{{ $focusSession->id }}--;
-            if (countdown_{{ $focusSession->id }} < 0) {
-                clearInterval(countdownInterval_{{ $focusSession->id }});
+        });
+
+        function startTimer() {
+            countdownInterval_{{ $focusSession->id }} = setInterval(function() {
+                var hours = Math.floor(countdown_{{ $focusSession->id }} / 3600);
+                var minutes = Math.floor((countdown_{{ $focusSession->id }} % 3600) / 60);
+                var seconds = countdown_{{ $focusSession->id }} % 60;
+                var countdownElement = document.getElementById("countdown_{{ $focusSession->id }}");
                 if (countdownElement) {
-                    countdownElement.textContent = "Focus session ended";
+                    var countdownText = '';
+                    if (hours > 0) {
+                        countdownText += pad(hours) + "h ";
+                    }
+                    if (hours > 0 || minutes > 0) {
+                        countdownText += pad(minutes) + "m ";
+                    }
+                    countdownText += pad(seconds) + "s";
+                    countdownElement.textContent = countdownText;
                 }
-            }
-        }, 1000);
+                countdown_{{ $focusSession->id }}--;
+                if (countdown_{{ $focusSession->id }} < 0) {
+                    clearInterval(countdownInterval_{{ $focusSession->id }});
+                    if (countdownElement) {
+                        countdownElement.textContent = "Focus session ended";
+                    }
+                }
+            }, 1000);
+        }
+
+        var isTimerPaused = false;
+
+        function pauseTimer() {
+            // Pause the timer
+            clearInterval(countdownInterval_{{ $focusSession->id }});
+            isTimerPaused = true;
+        }
+
+        function resumeTimer() {
+            // Resume the timer
+            startTimer();
+            isTimerPaused = false;
+        }
 
         // Function to pad single digits with leading zeros
         function pad(number) {
@@ -393,6 +418,7 @@
             var checkbox = document.getElementById("fontSizeToggle");
             var textElements = document.querySelectorAll(".text-element");
             var focusTitleElement = document.querySelectorAll(".focus-title");
+            var countdown = document.querySelectorAll(".countdown");
 
             if (checkbox.checked) {
                 textElements.forEach(function(element) {
@@ -405,11 +431,19 @@
                     var currentFontSize = parseFloat(computedStyle.getPropertyValue('font-size'));
                     element.style.fontSize = (currentFontSize / 1.2) + 'px';
                 });
+                countdown.forEach(function(element) {
+                    var computedStyle = window.getComputedStyle(element);
+                    var currentFontSize = parseFloat(computedStyle.getPropertyValue('font-size'));
+                    element.style.fontSize = (currentFontSize / 1.2) + 'px';
+                });
             } else {
                 textElements.forEach(function(element) {
                     element.style.fontSize = '';
                 });
                 focusTitleElement.forEach(function(element){
+                    element.style.fontSize = '';
+                });
+                countdown.forEach(function(element){
                     element.style.fontSize = '';
                 });
             }
