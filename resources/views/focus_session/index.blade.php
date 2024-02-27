@@ -18,7 +18,6 @@
             background-size: cover;
             background-position: center;
             overflow: hidden;
-            font-size: 16px;
         }
 
         .dark-mode {
@@ -40,10 +39,6 @@
             position: absolute;
             left: 0;
             bottom: 0;
-        }
-
-        .countdown{
-            font-size: 8rem;
         }
 
         #quoteText{
@@ -172,6 +167,11 @@
             transition: font-size 0.4s ease;
         }
 
+        .focus-title{
+            font-size: 2.3rem;
+            transition: font-size 0.4s ease;
+        }
+
     </style>
 </head>
 <body class="antialiased">
@@ -215,10 +215,10 @@
             @if($focusSession = $focusSessions->last())
                 <div id="parent-div">
                     <div style="text-align: center">
-                        <h1 class="title text-element" style="color: white">Keep focus for</h1>
+                        <h1 class="focus-title" style="color: white; font-size: 2.5rem">Keep focus for</h1>
                     </div>
                     <div style="text-align: center">
-                        <div id="countdown_{{ $focusSession->id }}" style="font-weight: bold; color: white" class="countdown text-element">00:00:00</div>
+                        <div id="countdown_{{ $focusSession->id }}" style="font-weight: bold; color: white; font-size: 5rem" class="countdown text-element">00:00:00</div>
                     </div>
                 </div>
             @else
@@ -261,7 +261,7 @@
                 <ul class="popup-list">
                     <li class="popup-list-item">
                         <div class="toggle-container">
-                            <span style="margin-right: 10px">Dark Mode:</span>
+                            <span style="margin-right: 10px">Dark Background:</span>
                             @include('components.dark-toggle-switch', ['onchange' => 'toggleDarkMode'])
                         </div>
                     </li>
@@ -381,7 +381,7 @@
             var checkbox = document.getElementById("darkModeToggle");
             var htmlElement = document.querySelector("html");
             if (checkbox.checked) {
-                htmlElement.style.backgroundImage = "url('/images/dark-background.jpg')";
+                htmlElement.style.backgroundImage = "url('/images/dark-background1.jpg')";
             } else {
                 htmlElement.style.backgroundImage = "url('/images/img.jpg')";
             }
@@ -392,15 +392,24 @@
         function toggleFontSize() {
             var checkbox = document.getElementById("fontSizeToggle");
             var textElements = document.querySelectorAll(".text-element");
+            var focusTitleElement = document.querySelectorAll(".focus-title");
 
             if (checkbox.checked) {
                 textElements.forEach(function(element) {
+                    var computedStyle = window.getComputedStyle(element);
+                    var currentFontSize = parseFloat(computedStyle.getPropertyValue('font-size'));
+                    element.style.fontSize = (currentFontSize / 1.3) + 'px';
+                });
+                focusTitleElement.forEach(function(element) {
                     var computedStyle = window.getComputedStyle(element);
                     var currentFontSize = parseFloat(computedStyle.getPropertyValue('font-size'));
                     element.style.fontSize = (currentFontSize / 1.2) + 'px';
                 });
             } else {
                 textElements.forEach(function(element) {
+                    element.style.fontSize = '';
+                });
+                focusTitleElement.forEach(function(element){
                     element.style.fontSize = '';
                 });
             }
