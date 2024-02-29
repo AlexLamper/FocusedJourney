@@ -412,7 +412,7 @@
             var checkbox = document.getElementById("darkModeToggle");
             var htmlElement = document.querySelector("html");
             if (checkbox.checked) {
-                htmlElement.style.backgroundImage = "url('/images/dark-background1.jpg')";
+                htmlElement.style.backgroundImage = "url('/images/dark-background2.jpg')";
             } else {
                 htmlElement.style.backgroundImage = "url('/images/img.jpg')";
             }

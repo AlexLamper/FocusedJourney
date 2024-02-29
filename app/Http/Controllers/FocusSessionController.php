@@ -18,7 +18,6 @@ class FocusSessionController extends Controller
     {
         // Fetch all focus sessions for the authenticated user
         $focusSessions = Auth::user()->focusSessions()->get();
-//        $focusSession = Auth::user()->focusSession()->get()->latest();
 
         return view('focus_session.index', compact('focusSessions'));
     }

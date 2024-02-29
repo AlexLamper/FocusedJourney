@@ -3,6 +3,7 @@
 use App\Http\Controllers\FocusSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,10 @@ Route::get('/about', function () {
 
 Route::get('/focus-sessions', [FocusSessionController::class, 'index'])->name('focus-sessions.index');
 Route::post('/focus-sessions', [FocusSessionController::class, 'store'])->name('focus-sessions.store');
+
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
+Route::post('/tasks', [TaskController::class, 'store']);
+Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
