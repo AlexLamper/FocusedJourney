@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <style>
         #font{
-            font-family: "EB Garamond", serif;
+            font-family: 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif;
             font-optical-sizing: auto;
             font-weight: 600;
             font-style: normal;
@@ -32,7 +32,7 @@
                 <!-- Left Column (2/3 width) -->
                 <div class="column is-two-thirds">
                     <div>
-                        <h1 class="font-bold mb-2" style="font-size: 2.5rem; font-weight: bold">Welcome to Focused Journey</h1>
+                        <h1 class="font-bold mb-2" style="font-size: 2.9rem; font-weight: bold; color: black">Welcome to Focused Journey</h1>
                         <p class="text-gray-600 mb-6" style="font-size: 1.4rem;">Boost your productivity and focus with our app.</p>
                     </div>
 
@@ -50,7 +50,7 @@
                             <label for="duration" class="label">Focus Duration (minutes)</label>
                             @auth
                                 <div class="control">
-                                    <input type="number" name="duration" id="duration" class="input border border-b-2 border-black" style="max-width: 200px;" required>
+                                    <input type="number" name="duration" id="duration" class="input border border-b-2 border-[#303030]" style="max-width: 200px; border-radius: 5px" required>
                                 </div>
                             @endauth
 

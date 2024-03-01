@@ -7,6 +7,9 @@
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <style>
+        body{
+            font-family: 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
         .form-container {
             max-width: 1000px;
             width: 600px;

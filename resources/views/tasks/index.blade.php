@@ -32,18 +32,21 @@
         .create-task-btn {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
+            background-color: #fff; /* White background */
+            color: #000; /* Black text */
             text-decoration: none;
-            border: none;
+            border: 1px solid #ccc; /* Slight border */
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
         }
 
         .create-task-btn:hover {
-            background-color: #0056b3;
-            color: white;
+            background-color: #f0f0f0; /* Light gray background on hover */
+            color: #333; /* Darker text on hover */
+            border-color: #999; /* Darker border on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Larger shadow on hover */
         }
 
         ul {
@@ -99,7 +102,7 @@
         }
 
         .delete-btn {
-            background-color: #dc3545;
+            background-color: #ad2d36;
             color: #fff;
             border: none;
             border-radius: 4px;
@@ -108,7 +111,56 @@
         }
 
         .delete-btn:hover {
-            background-color: #c82333;
+            background-color: #bd222c;
+        }
+
+        /* Styles for header */
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Styles for tasks section */
+        .tasks-section {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* Styles for task cards */
+        .task-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Styles for task content */
+        .task-content {
+            flex-grow: 1;
+        }
+
+        /* Styles for task actions */
+        .task-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Styles for priority dropdown */
+        .priority-dropdown {
+            margin-right: 10px;
+        }
+
+        /* Styles for delete button */
+        .delete-btn {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
         }
 
     </style>
@@ -117,29 +169,34 @@
 <x-app-layout>
     <!-- Hero Section -->
     <section class="hero section">
-        <div class="container">
+        <!-- Header -->
+        <header class="mb-6">
             <h1 class="title">Task List</h1>
-            @if ($tasks->isEmpty())
-                <p class="empty-message">You haven't added any new tasks yet.</p>
-            @else
-                <ul class="task-list">
-                    @foreach ($tasks as $task)
-                        <li class="task-card">
-                            <div class="task-content">
-                                <span class="task-name">{{ $task->name }}</span>
-                                <span class="task-description">{{ $task->description }}</span>
-                            </div>
-                            <div class="task-actions">
-                                <button class="delete-btn">Delete</button>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
+        </header>
 
-            @endif
+        <!-- Tasks Section -->
+        <section class="tasks-section">
+            <ul class="task-list mb-4">
+                @foreach ($tasks as $task)
+                    <li class="task-card">
+                        <div class="task-content">
+                            <span class="task-name">{{ $task->name }}</span>
+                            <span class="task-description">{{ $task->description }}</span>
+                        </div>
+                        <div class="task-actions">
+                            <select class="priority-dropdown">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                            <button class="delete-btn" style="background-color: #ad2d36;">Delete</button>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
 
             <a href="{{ route('tasks.create') }}" class="create-task-btn">Create a New Task</a>
-        </div>
+        </section>
     </section>
 </x-app-layout>
 @include('components.footer')

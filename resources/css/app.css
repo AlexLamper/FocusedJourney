@@ -4,3 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif;
+}

@@ -7,6 +7,10 @@
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <style>
+        body{
+            font-family: 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
         .main-section {
             position: relative;
             height: 70vh;
@@ -38,7 +42,7 @@
                 <div class="container">
                     <div class="columns">
                         <div class="column is-two-thirds">
-                            <h1 class="mb-2" style="font-size: 2.5rem; font-weight: bold">
+                            <h1 class="mb-2" style="font-size: 2.5rem; font-weight: bold; color: black">
                                 About Focused Journey
                             </h1>
                             <p class="text-gray-600 is-size-4 mb-5" style="font-size: 1.4rem;">
@@ -97,7 +101,7 @@
 
         <div class="main-section">
             <div class="main-content">
-                <h2 class="title is-8">Why Focus Matters</h2>
+                <h2 class="title is-8" style="color: black">Why Focus Matters</h2>
                 <p>Focus is essential for productivity and success. When you concentrate your attention and efforts on a specific task or goal, you can achieve more in less time. By eliminating distractions and staying committed to your objectives, you can work with clarity and efficiency.</p>
                 <p>Whether you're studying for an exam, working on a project, or pursuing personal growth, focus enables you to make meaningful progress and achieve your desired outcomes. It allows you to allocate your resources effectively, manage your time efficiently, and overcome obstacles with determination.</p>
                 <br>
@@ -108,7 +112,7 @@
 
         <div class="section features-section">
             <div class="container">
-                <h2 class="title is-8 mb-6">Features of Focus App</h2>
+                <h2 class="title is-8 mb-6" style="color: black">Features of Focus App</h2>
                 <div class="columns is-multiline">
                     <div class="column is-one-third">
                         <div class="card">

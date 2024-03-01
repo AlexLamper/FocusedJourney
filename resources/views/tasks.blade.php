@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', Helvetica Neue, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
