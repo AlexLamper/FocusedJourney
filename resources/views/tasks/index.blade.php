@@ -29,7 +29,7 @@
         }
 
         /*Create Task Button */
-        .create-task-btn {
+        .button-style {
             display: inline-block;
             padding: 10px 20px;
             background-color: #fff; /* White background */
@@ -42,7 +42,7 @@
             transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
         }
 
-        .create-task-btn:hover {
+        .button-style:hover {
             background-color: #f0f0f0; /* Light gray background on hover */
             color: #333; /* Darker text on hover */
             border-color: #999; /* Darker border on hover */
@@ -195,7 +195,7 @@
                 @endforeach
             </ul>
 
-            <a href="{{ route('tasks.create') }}" class="create-task-btn">Create a New Task</a>
+            <a href="{{ route('tasks.create') }}" class="button-style">Create a New Task</a>
         </section>
     </section>
 </x-app-layout>

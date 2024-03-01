@@ -48,6 +48,26 @@
             background-color: #0056b3;
         }
 
+        /*Create Task Button */
+        .button-style {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #fff; /* White background */
+            color: #000; /* Black text */
+            text-decoration: none;
+            border: 1px solid #ccc; /* Slight border */
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+        }
+
+        .button-style:hover {
+            background-color: #f0f0f0; /* Light gray background on hover */
+            color: #333; /* Darker text on hover */
+            border-color: #999; /* Darker border on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Larger shadow on hover */
+        }
     </style>
 </head>
 <body class="antialiased bg-white">
@@ -66,7 +86,7 @@
                     <label for="description">Description:</label>
                     <textarea id="description" name="description"></textarea>
                 </div>
-                <button type="submit">Add Task</button>
+                <button type="submit" class="button-style" style="appearance: none; color: black; text-decoration: none; border: 1px solid #ccc; background: none; cursor: pointer;">Add Task</button>
             </form>
         </div>
     </section>
