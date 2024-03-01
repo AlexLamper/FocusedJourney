@@ -6,6 +6,7 @@
     <title>Tasks | Focused Journey</title>
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,21 +33,22 @@
         .button-style {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #fff; /* White background */
-            color: #000; /* Black text */
+            background-color: #999999;
+            color: black;
             text-decoration: none;
-            border: 1px solid #ccc; /* Slight border */
+            border: 1px solid #ccc;
             border-radius: 4px;
             cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            font-weight: normal;
         }
 
         .button-style:hover {
-            background-color: #f0f0f0; /* Light gray background on hover */
-            color: #333; /* Darker text on hover */
-            border-color: #999; /* Darker border on hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Larger shadow on hover */
+            background-color: #888888;
+            color: black;
+            border-color: #999;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         ul {
@@ -114,14 +116,6 @@
             background-color: #bd222c;
         }
 
-        /* Styles for header */
-        .header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-
         /* Styles for tasks section */
         .tasks-section {
             width: 80%;
@@ -163,42 +157,114 @@
             cursor: pointer;
         }
 
+        .form-container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style input and textarea */
+        .form-container input[type="text"],
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Style the button */
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Hover effect for the button */
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
     </style>
 </head>
 <body class="antialiased bg-white">
 <x-app-layout>
-    <!-- Hero Section -->
-    <section class="hero section">
-        <!-- Header -->
-        <header class="mb-6">
+    <section class="section">
+        <div class="form-container">
             <h1 class="title">Task List</h1>
-        </header>
-
-        <!-- Tasks Section -->
-        <section class="tasks-section">
-            <ul class="task-list mb-4">
+            <ul class="task-list mb-4" id="sortable-list">
                 @foreach ($tasks as $task)
-                    <li class="task-card">
+                    <li class="task-card" data-task-id="{{ $task->id }}">
                         <div class="task-content">
                             <span class="task-name">{{ $task->name }}</span>
                             <span class="task-description">{{ $task->description }}</span>
                         </div>
                         <div class="task-actions">
-                            <select class="priority-dropdown">
-                                <option value="low">Low</option>
-                                <option value="medium">Medium</option>
-                                <option value="high">High</option>
-                            </select>
-                            <button class="delete-btn" style="background-color: #ad2d36;">Delete</button>
+                            <label>
+                                <select class="priority-dropdown">
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </label>
+                            <button class="delete-btn">Delete</button>
                         </div>
                     </li>
                 @endforeach
             </ul>
-
-            <a href="{{ route('tasks.create') }}" class="button-style">Create a New Task</a>
-        </section>
+            <a href="/tasks/create" class="button-style">Create a new task</a>
+        </div>
     </section>
 </x-app-layout>
 @include('components.footer')
+
+<script>
+    const sortableList = new Sortable(document.getElementById('sortable-list'), {
+        animation: 150,
+        handle: '.task-card',
+        onEnd: function (evt) {
+            const taskElements = document.querySelectorAll('.task-card');
+            const newOrder = [];
+            taskElements.forEach((task, index) => {
+                newOrder.push({
+                    id: task.dataset.taskId,
+                    order: index + 1 // Index starts from 0, so add 1 to start from 1
+                });
+            });
+
+            // Send an AJAX request to the server to update the task order
+            fetch('/tasks/update-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify(newOrder)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Task order updated successfully:', data);
+                })
+                .catch(error => {
+                    console.error('There was a problem updating task order:', error);
+                });
+        }
+    });
+</script>
+
 </body>
 </html>

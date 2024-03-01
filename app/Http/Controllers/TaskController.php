@@ -20,7 +20,9 @@ class TaskController extends Controller
         }
 
         // Retrieve tasks associated with the authenticated user
-        $tasks = Task::where('user_id', $user->id)->get();
+        $tasks = Task::where('user_id', $user->id)
+            ->orderBy('order')
+            ->get();
 
         // Return the tasks to the tasks.blade.php view
         return view('tasks.index', ['tasks' => $tasks]);
@@ -56,6 +58,16 @@ class TaskController extends Controller
 
         // Return the view with the authenticated user
         return view('tasks.create', compact('user'));
+    }
+
+    public function updateOrder(Request $request)
+    {
+        $newOrder = $request->all();
+        foreach ($newOrder as $item) {
+            Task::where('id', $item['id'])->update(['order' => $item['order']]);
+        }
+
+        return response()->json(['message' => 'Task order updated successfully']);
     }
 }
 
