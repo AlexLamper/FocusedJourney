@@ -55,7 +55,7 @@
                             @endauth
 
                             @guest
-                                <p class="mb-1">Please log in or register to use a focus session.</p>
+                                <p class="mb-1">Please log in or register to start a focus session.</p>
                                 <div class="control">
                                     <input type="number" name="duration" id="duration" class="input border border-b-2 border-black" style="max-width: 200px;" required disabled>
                                 </div>
