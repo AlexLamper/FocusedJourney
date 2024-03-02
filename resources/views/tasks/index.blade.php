@@ -33,7 +33,7 @@
         .button-style {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #999999;
+            background-color: #e2e8f0;
             color: black;
             text-decoration: none;
             border: 1px solid #ccc;
@@ -45,7 +45,7 @@
         }
 
         .button-style:hover {
-            background-color: #888888;
+            background-color: #a0aec0;
             color: black;
             border-color: #999;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -216,7 +216,11 @@
                                     <option value="high">High</option>
                                 </select>
                             </label>
-                            <button class="delete-btn">Delete</button>
+                            <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="delete-btn">Delete</button>
+                            </form>
                         </div>
                     </li>
                 @endforeach

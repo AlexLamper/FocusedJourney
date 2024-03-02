@@ -60,6 +60,20 @@ class TaskController extends Controller
         return view('tasks.create', compact('user'));
     }
 
+    public function destroy(Task $task)
+    {
+        // Ensure that the authenticated user owns the task
+        if ($task->user_id !== auth()->id()) {
+            return back()->with('error', 'You are not authorized to delete this task.');
+        }
+
+        // Delete the task
+        $task->delete();
+
+        return redirect()->route('tasks')->with('success', 'Task deleted successfully.');
+    }
+
+
     public function updateOrder(Request $request)
     {
         $newOrder = $request->all();
