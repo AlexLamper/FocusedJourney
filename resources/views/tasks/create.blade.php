@@ -86,6 +86,14 @@
                     <label for="description">Description:</label>
                     <textarea id="description" name="description"></textarea>
                 </div>
+                <div>
+                    <label for="priority">Priority:</label>
+                    <select id="priority" name="priority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
                 <button type="submit" class="button-style" style="appearance: none; color: black; text-decoration: none; border: 1px solid #ccc; background: none; cursor: pointer;">Add Task</button>
             </form>
         </div>

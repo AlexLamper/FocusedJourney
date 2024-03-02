@@ -34,12 +34,14 @@ class TaskController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'description' => 'nullable|max:255',
+            'priority' => 'nullable|in:Low,Medium,High',
         ]);
 
         // Create a new Task instance with the validated data
         $task = new Task();
         $task->name = $request->name;
         $task->description = $request->description;
+        $task->priority = $request->priority;
 
         // Associate the task with the authenticated user
         $task->user_id = auth()->id();
@@ -73,6 +75,17 @@ class TaskController extends Controller
         return redirect()->route('tasks')->with('success', 'Task deleted successfully.');
     }
 
+    public function updatePriority(Request $request, Task $task)
+    {
+        $request->validate([
+            'priority' => 'required|in:Low,Medium,High',
+        ]);
+
+        $task->priority = $request->priority;
+        $task->save();
+
+        return response()->json(['message' => 'Task priority updated successfully']);
+    }
 
     public function updateOrder(Request $request)
     {

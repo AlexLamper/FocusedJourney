@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::post('/tasks/update-order', [TaskController::class, 'updateOrder']);
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+    Route::put('/tasks/{task}', [TaskController::class, 'updatePriority'])->name('tasks.updatePriority');
 });
 
 Route::middleware('auth')->group(function () {

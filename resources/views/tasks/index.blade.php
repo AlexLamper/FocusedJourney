@@ -209,11 +209,11 @@
                             <span class="task-description">{{ $task->description }}</span>
                         </div>
                         <div class="task-actions">
-                            <label>
-                                <select class="priority-dropdown">
-                                    <option value="low">Low</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="high">High</option>
+                            <label for="priority">
+                                <select name="priority" class="priority-dropdown" data-task-id="{{ $task->id }}">
+                                    <option value="Low" {{ $task->priority === 'Low' ? 'selected' : '' }}>Low</option>
+                                    <option value="Medium" {{ $task->priority === 'Medium' ? 'selected' : '' }}>Medium</option>
+                                    <option value="High" {{ $task->priority === 'High' ? 'selected' : '' }}>High</option>
                                 </select>
                             </label>
                             <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="delete-form">
@@ -230,6 +230,41 @@
     </section>
 </x-app-layout>
 @include('components.footer')
+
+<script>
+    // Function to handle priority change
+    function handlePriorityChange(taskId, newPriority) {
+        fetch(`/tasks/${taskId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ priority: newPriority })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Task priority updated successfully:', data);
+            })
+            .catch(error => {
+                console.error('There was a problem updating task priority:', error);
+            });
+    }
+
+    // Add event listener to priority dropdowns
+    document.querySelectorAll('.priority-dropdown').forEach(dropdown => {
+        dropdown.addEventListener('change', event => {
+            const taskId = event.target.dataset.taskId;
+            const newPriority = event.target.value;
+            handlePriorityChange(taskId, newPriority);
+        });
+    });
+</script>
 
 <script>
     const sortableList = new Sortable(document.getElementById('sortable-list'), {
