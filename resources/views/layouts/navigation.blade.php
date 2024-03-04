@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('tasks')" :active="request()->routeIs('tasks')">
                         {{ __('Tasks') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('planning')" :active="request()->routeIs('planning')">
+                        {{ __('Planning') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
                         {{ __('About') }}
                     </x-nav-link>
@@ -90,6 +93,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('tasks')" :active="request()->routeIs('tasks')">
                 {{ __('Tasks') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('planning')" :active="request()->routeIs('planning')">
+                {{ __('Planning') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
                 {{ __('About') }}

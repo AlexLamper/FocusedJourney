@@ -52,21 +52,19 @@
         .button-style {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #fff; /* White background */
-            color: #000; /* Black text */
+            background-color: #ff7f6e;
+            color: white;
             text-decoration: none;
-            border: 1px solid #ccc; /* Slight border */
             border-radius: 4px;
             cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
         .button-style:hover {
-            background-color: #f0f0f0; /* Light gray background on hover */
-            color: #333; /* Darker text on hover */
-            border-color: #999; /* Darker border on hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Larger shadow on hover */
+            background-color: #f0f0f0;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -86,7 +84,7 @@
                     <label for="description">Description:</label>
                     <textarea id="description" name="description"></textarea>
                 </div>
-                <div>
+                <div style="margin-bottom: 15px">
                     <label for="priority">Priority:</label>
                     <select id="priority" name="priority">
                         <option value="Low">Low</option>
@@ -94,7 +92,7 @@
                         <option value="High">High</option>
                     </select>
                 </div>
-                <button type="submit" class="button-style" style="appearance: none; color: black; text-decoration: none; border: 1px solid #ccc; background: none; cursor: pointer;">Add Task</button>
+                <button type="submit" class="button-style" style="appearance: none; color: white; text-decoration: none; background: #ff7f6e; cursor: pointer;">Add Task</button>
             </form>
         </div>
     </section>

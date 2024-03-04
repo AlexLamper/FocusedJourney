@@ -13,7 +13,7 @@
         html {
             margin: 0;
             padding: 0;
-            background-image: url("/images/img.jpg");
+            background-image: url("/images/solid-white.jpg");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -21,11 +21,11 @@
         }
 
         .dark-mode {
-            background-image: url("/images/dark-background.jpg");
+            background-image: url("/images/solid-black.jpg");
         }
 
         .light-mode {
-            background-image: url("/images/img.jpg");
+            background-image: url("/images/solid-white.jpg");
         }
 
         #section{
@@ -88,7 +88,6 @@
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
-            color: #333;
         }
 
         .popup-content {
@@ -103,7 +102,6 @@
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 10px;
-            color: #555;
         }
 
         .popup-list {
@@ -177,7 +175,7 @@
         <div style="height: 15%; display: flex; justify-content: space-between; padding-top: 20px">
             <div style="width: 25%;">
                 <button onclick="toggleFullScreen()">
-                    <svg style="margin-left: 20px" fill="#ffffff" height="40px" width="40px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" stroke="#ffffff">
+                    <svg style="margin-left: 20px" fill="#4a4a4a" height="40px" width="40px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" stroke="#ffffff">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"/>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
                         <g id="SVGRepo_iconCarrier"> <g> <path d="M192,64H32C14.328,64,0,78.328,0,96v96c0,17.672,14.328,32,32,32s32-14.328,32-32v-64h128c17.672,0,32-14.328,32-32 S209.672,64,192,64z"/> <path d="M480,64H320c-17.672,0-32,14.328-32,32s14.328,32,32,32h128v64c0,17.672,14.328,32,32,32s32-14.328,32-32V96 C512,78.328,497.672,64,480,64z"/> <path d="M480,288c-17.672,0-32,14.328-32,32v64H320c-17.672,0-32,14.328-32,32s14.328,32,32,32h160c17.672,0,32-14.328,32-32v-96 C512,302.328,497.672,288,480,288z"/> <path d="M192,384H64v-64c0-17.672-14.328-32-32-32S0,302.328,0,320v96c0,17.672,14.328,32,32,32h160c17.672,0,32-14.328,32-32 S209.672,384,192,384z"/> </g> </g>
@@ -186,19 +184,19 @@
             </div>
             <div style="width: 50%; text-align: center;">
                 <div class="p-5" style="min-height: 200px">
-                    <h2 style="color: white" id="quoteText" class="text-element"></h2>
+                    <h2 id="quoteText" class="text-element"></h2>
                     <br>
-                    <p id="quoteAuthor" style="color: white;" class="text-element"></p>
+                    <p id="quoteAuthor" class="text-element"></p>
                 </div>
                 <button onclick="fetchQuote()">
-                    <svg fill="#ffffff" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 489.698 489.698" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M468.999,227.774c-11.4,0-20.8,8.3-20.8,19.8c-1,74.9-44.2,142.6-110.3,178.9c-99.6,54.7-216,5.6-260.6-61l62.9,13.1 c10.4,2.1,21.8-4.2,23.9-15.6c2.1-10.4-4.2-21.8-15.6-23.9l-123.7-26c-7.2-1.7-26.1,3.5-23.9,22.9l15.6,124.8 c1,10.4,9.4,17.7,19.8,17.7c15.5,0,21.8-11.4,20.8-22.9l-7.3-60.9c101.1,121.3,229.4,104.4,306.8,69.3 c80.1-42.7,131.1-124.8,132.1-215.4C488.799,237.174,480.399,227.774,468.999,227.774z"></path> <path d="M20.599,261.874c11.4,0,20.8-8.3,20.8-19.8c1-74.9,44.2-142.6,110.3-178.9c99.6-54.7,216-5.6,260.6,61l-62.9-13.1 c-10.4-2.1-21.8,4.2-23.9,15.6c-2.1,10.4,4.2,21.8,15.6,23.9l123.8,26c7.2,1.7,26.1-3.5,23.9-22.9l-15.6-124.8 c-1-10.4-9.4-17.7-19.8-17.7c-15.5,0-21.8,11.4-20.8,22.9l7.2,60.9c-101.1-121.2-229.4-104.4-306.8-69.2 c-80.1,42.6-131.1,124.8-132.2,215.3C0.799,252.574,9.199,261.874,20.599,261.874z"></path> </g> </g> </g></svg>
+                    <svg fill="#4a4a4a" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 489.698 489.698" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M468.999,227.774c-11.4,0-20.8,8.3-20.8,19.8c-1,74.9-44.2,142.6-110.3,178.9c-99.6,54.7-216,5.6-260.6-61l62.9,13.1 c10.4,2.1,21.8-4.2,23.9-15.6c2.1-10.4-4.2-21.8-15.6-23.9l-123.7-26c-7.2-1.7-26.1,3.5-23.9,22.9l15.6,124.8 c1,10.4,9.4,17.7,19.8,17.7c15.5,0,21.8-11.4,20.8-22.9l-7.3-60.9c101.1,121.3,229.4,104.4,306.8,69.3 c80.1-42.7,131.1-124.8,132.1-215.4C488.799,237.174,480.399,227.774,468.999,227.774z"></path> <path d="M20.599,261.874c11.4,0,20.8-8.3,20.8-19.8c1-74.9,44.2-142.6,110.3-178.9c99.6-54.7,216-5.6,260.6,61l-62.9-13.1 c-10.4-2.1-21.8,4.2-23.9,15.6c-2.1,10.4,4.2,21.8,15.6,23.9l123.8,26c7.2,1.7,26.1-3.5,23.9-22.9l-15.6-124.8 c-1-10.4-9.4-17.7-19.8-17.7c-15.5,0-21.8,11.4-20.8,22.9l7.2,60.9c-101.1-121.2-229.4-104.4-306.8-69.2 c-80.1,42.6-131.1,124.8-132.2,215.3C0.799,252.574,9.199,261.874,20.599,261.874z"></path> </g> </g> </g></svg>
                 </button>
             </div>
             <div style="width: 25%; display: flex;">
                 <div style="flex-grow: 1;"></div>
                 <div>
                     <button onclick="toggleSettingsPopup()">
-                        <svg style="margin-right: 20px" fill="#ffffff" height="40px" width="40px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 489.802 489.802" xml:space="preserve" stroke="#ffffff">
+                        <svg style="margin-right: 20px" fill="#4a4a4a" height="40px" width="40px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 489.802 489.802" xml:space="preserve" stroke="#ffffff">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"/>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
                             <g id="SVGRepo_iconCarrier"> <g> <path d="M20.701,281.901l32.1,0.2c4.8,24.7,14.3,48.7,28.7,70.5l-22.8,22.6c-8.2,8.1-8.2,21.2-0.2,29.4l24.6,24.9 c8.1,8.2,21.2,8.2,29.4,0.2l22.8-22.6c21.6,14.6,45.5,24.5,70.2,29.5l-0.2,32.1c-0.1,11.5,9.2,20.8,20.7,20.9l35,0.2 c11.5,0.1,20.8-9.2,20.9-20.7l0.2-32.1c24.7-4.8,48.7-14.3,70.5-28.7l22.6,22.8c8.1,8.2,21.2,8.2,29.4,0.2l24.9-24.6 c8.2-8.1,8.2-21.2,0.2-29.4l-22.6-22.8c14.6-21.6,24.5-45.5,29.5-70.2l32.1,0.2c11.5,0.1,20.8-9.2,20.9-20.7l0.2-35 c0.1-11.5-9.2-20.8-20.7-20.9l-32.1-0.2c-4.8-24.7-14.3-48.7-28.7-70.5l22.8-22.6c8.2-8.1,8.2-21.2,0.2-29.4l-24.6-24.9 c-8.1-8.2-21.2-8.2-29.4-0.2l-22.8,22.6c-21.6-14.6-45.5-24.5-70.2-29.5l0.2-32.1c0.1-11.5-9.2-20.8-20.7-20.9l-35-0.2 c-11.5-0.1-20.8,9.2-20.9,20.7l-0.3,32.1c-24.8,4.8-48.8,14.3-70.5,28.7l-22.6-22.8c-8.1-8.2-21.2-8.2-29.4-0.2l-24.8,24.6 c-8.2,8.1-8.2,21.2-0.2,29.4l22.6,22.8c-14.6,21.6-24.5,45.5-29.5,70.2l-32.1-0.2c-11.5-0.1-20.8,9.2-20.9,20.7l-0.2,35 C-0.099,272.401,9.201,281.801,20.701,281.901z M179.301,178.601c36.6-36.2,95.5-35.9,131.7,0.7s35.9,95.5-0.7,131.7 s-95.5,35.9-131.7-0.7S142.701,214.801,179.301,178.601z"/> </g> </g>
@@ -211,10 +209,10 @@
             @if($focusSession = $focusSessions->last())
                 <div id="parent-div">
                     <div style="text-align: center">
-                        <h1 class="focus-title" style="color: white; font-size: 2.8rem">Keep focus for</h1>
+                        <h1 class="focus-title" style="font-size: 2.8rem">Keep focus for</h1>
                     </div>
                     <div style="text-align: center">
-                        <div id="countdown_{{ $focusSession->id }}" style="font-weight: bold; color: white; font-size: 8rem; margin-top: -5px" class="countdown">00:00:00</div>
+                        <div id="countdown_{{ $focusSession->id }}" style="font-weight: bold; font-size: 8rem; margin-top: -5px" class="countdown">00:00:00</div>
                     </div>
                 </div>
             @else
@@ -396,10 +394,18 @@
         function toggleDarkMode() {
             var checkbox = document.getElementById("darkModeToggle");
             var htmlElement = document.querySelector("html");
+            var sectionTextElements = document.querySelectorAll("section *");
+
             if (checkbox.checked) {
-                htmlElement.style.backgroundImage = "url('/images/dark-background2.jpg')";
+                htmlElement.style.backgroundImage = "url('/images/solid-black.jpg')";
+                sectionTextElements.forEach(function(element) {
+                    element.style.color = "white";
+                });
             } else {
-                htmlElement.style.backgroundImage = "url('/images/img.jpg')";
+                htmlElement.style.backgroundImage = "url('/images/solid-white.jpg')";
+                sectionTextElements.forEach(function(element) {
+                    element.style.color = "#4a4a4a";
+                });
             }
         }
 

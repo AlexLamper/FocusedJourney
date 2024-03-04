@@ -4,6 +4,7 @@ use App\Http\Controllers\FocusSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\PlanningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/tasks/update-order', [TaskController::class, 'updateOrder']);
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     Route::put('/tasks/{task}', [TaskController::class, 'updatePriority'])->name('tasks.updatePriority');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/planning', [PlanningController::class, 'index'])->name('planning');
+    Route::get('/planning/daily', [PlanningController::class, 'daily'])->name('planning.daily');
+    Route::get('/planning/weekly', [PlanningController::class, 'weekly'])->name('planning.weekly');
+    Route::get('/planning/monthly', [PlanningController::class, 'monthly'])->name('planning.monthly');
+    Route::get('/planning/yearly', [PlanningController::class, 'yearly'])->name('planning.yearly');
 });
 
 Route::middleware('auth')->group(function () {
