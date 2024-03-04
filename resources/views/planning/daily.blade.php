@@ -24,172 +24,60 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
+        .menu-list a {
+            color: #3273dc;
         }
 
-        /*Create Task Button */
-        .button-style {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #ff7f6e;
-            color: white;
-            font-weight: lighter;
-            text-decoration: none;
-            border-radius: 4px;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .button-style:hover {
-            background-color: #ed7261;
-            color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #f9f9f9;
+        .box {
+            padding: 20px;
+            border: 1px solid #dbdbdb;
             border-radius: 5px;
         }
 
-        .empty-message {
-            text-align: center;
+        .media-content {
+            margin-bottom: 10px;
+        }
+
+        .title {
+            color: #4a4a4a;
+        }
+
+        .subtitle {
             color: #888;
         }
 
-        .task-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .task-card {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-        }
-
-        .task-content {
-            flex-grow: 1;
-        }
-
-        .task-name {
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .task-description {
-            color: #666;
-            font-size: 0.9em;
-            display: block;
-        }
-
-        .task-actions {
-            margin-left: 10px;
-        }
-
-        .delete-btn {
-            background-color: #ad2d36;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .delete-btn:hover {
-            background-color: #bd222c;
-        }
-
-        /* Styles for tasks section */
-        .tasks-section {
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        /* Styles for task cards */
-        .task-card {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
-        /* Styles for task content */
-        .task-content {
-            flex-grow: 1;
-        }
-
-        /* Styles for task actions */
-        .task-actions {
-            display: flex;
-            align-items: center;
-        }
-
-        /* Styles for priority dropdown */
-        .priority-dropdown {
-            margin-right: 10px;
-        }
-
-        /* Styles for delete button */
-        .delete-btn {
-            background-color: #ff0000;
-            color: #fff;
-            border: none;
-            padding: 8px 12px;
-            cursor: pointer;
-        }
-
         .form-container {
-            width: 80%;
-            margin: 0 auto;
+            background-color: #f5f5f5;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
+            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Style input and textarea */
-        .form-container input[type="text"],
-        .form-container textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
+        .form-container .field {
+            margin-bottom: 1.5rem;
         }
 
-        /* Style the button */
-        .form-container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        .box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Hover effect for the button */
-        .form-container button:hover {
-            background-color: #0056b3;
+        .menu {
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-label {
+            font-weight: bold;
+        }
+
+        .menu-list li a {
+            color: #333;
+        }
+
+        .menu-list li a:hover {
+            color: #3273dc;
         }
 
     </style>
@@ -197,7 +85,106 @@
 <body class="antialiased bg-white">
 <x-app-layout>
     <section class="section">
-        <h1>Daily Planning</h1>
+        <div class="container">
+            <h1 class="title">Daily Planner</h1>
+            <div class="columns">
+                <div class="column is-2">
+                    <!-- Sidebar for time slots -->
+                    <div class="menu">
+                        <p class="menu-label">Time Slots</p>
+                        <ul class="menu-list">
+                            <li><a href="#">00:00</a></li>
+                            <li><a href="#">01:00</a></li>
+                            <li><a href="#">02:00</a></li>
+                            <li><a href="#">03:00</a></li>
+                            <li><a href="#">04:00</a></li>
+                            <li><a href="#">05:00</a></li>
+                            <li><a href="#">06:00</a></li>
+                            <li><a href="#">07:00</a></li>
+                            <li><a href="#">08:00</a></li>
+                            <li><a href="#">09:00</a></li>
+                            <li><a href="#">10:00</a></li>
+                            <li><a href="#">11:00</a></li>
+                            <li><a href="#">12:00</a></li>
+                            <li><a href="#">13:00</a></li>
+                            <li><a href="#">14:00</a></li>
+                            <li><a href="#">15:00</a></li>
+                            <li><a href="#">16:00</a></li>
+                            <li><a href="#">17:00</a></li>
+                            <li><a href="#">18:00</a></li>
+                            <li><a href="#">19:00</a></li>
+                            <li><a href="#">20:00</a></li>
+                            <li><a href="#">21:00</a></li>
+                            <li><a href="#">22:00</a></li>
+                            <li><a href="#">23:00</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column">
+                    <!-- Main section for tasks/events -->
+                    <div class="box">
+                        <!-- Task creation form -->
+                        <div class="form-container">
+                            <h1 class="title">Create a Task</h1>
+                            <form method="post">
+                                @csrf
+                                <div class="field">
+                                    <label class="label" for="name">Task Name:</label>
+                                    <div class="control">
+                                        <input class="input" type="text" id="name" name="name" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label" for="description">Description:</label>
+                                    <div class="control">
+                                        <textarea class="textarea" id="description" name="description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label" for="timestamp">Timestamp:</label>
+                                    <div class="control">
+                                        <input class="input" type="datetime-local" id="timestamp" name="timestamp" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label" for="priority">Priority:</label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select id="priority" name="priority">
+                                                <option value="Low">Low</option>
+                                                <option value="Medium">Medium</option>
+                                                <option value="High">High</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <button type="submit" class="button is-primary">Add Task</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- End of task creation form -->
+
+                        <!-- Existing tasks/events -->
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-4">09:00 - 10:00</p>
+                                <p class="subtitle is-6">Task 1</p>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-4">10:00 - 11:00</p>
+                                <p class="subtitle is-6">Task 2</p>
+                            </div>
+                        </div>
+                        <!-- Add more tasks/events here -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </x-app-layout>
 @include('components.footer')
