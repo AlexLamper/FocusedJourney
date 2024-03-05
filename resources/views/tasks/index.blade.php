@@ -205,6 +205,7 @@
                         <div class="task-content">
                             <span class="task-name">{{ $task->name }}</span>
                             <span class="task-description">{{ $task->description }}</span>
+                            <span class="task-timestamp">{{ $task->timestamp }}</span>
                         </div>
                         <div class="task-actions">
                             <label for="priority">
@@ -223,6 +224,7 @@
                     </li>
                 @endforeach
             </ul>
+
             <a href="/tasks/create" class="button-style">Create a new task</a>
         </div>
     </section>

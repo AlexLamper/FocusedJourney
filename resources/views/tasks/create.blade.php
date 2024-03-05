@@ -85,6 +85,10 @@
                     <textarea id="description" name="description"></textarea>
                 </div>
                 <div style="margin-bottom: 15px">
+                    <label for="timestamp">Timestamp:</label>
+                    <input type="datetime-local" id="timestamp" name="timestamp" required>
+                </div>
+                <div style="margin-bottom: 15px">
                     <label for="priority">Priority:</label>
                     <select id="priority" name="priority">
                         <option value="Low">Low</option>
@@ -92,7 +96,7 @@
                         <option value="High">High</option>
                     </select>
                 </div>
-                <button type="submit" class="button-style" style="appearance: none; color: white; text-decoration: none; background: #ff7f6e; cursor: pointer;">Add Task</button>
+                <button type="submit" class="button-style">Add Task</button>
             </form>
         </div>
     </section>

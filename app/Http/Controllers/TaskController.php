@@ -35,6 +35,7 @@ class TaskController extends Controller
             'name' => 'required|max:255',
             'description' => 'nullable|max:255',
             'priority' => 'nullable|in:Low,Medium,High',
+            'timestamp' => 'required|date_format:Y-m-d\TH:i'
         ]);
 
         // Create a new Task instance with the validated data
@@ -42,6 +43,7 @@ class TaskController extends Controller
         $task->name = $request->name;
         $task->description = $request->description;
         $task->priority = $request->priority;
+        $task->timestamp = $request->timestamp;
 
         // Associate the task with the authenticated user
         $task->user_id = auth()->id();

@@ -18,6 +18,7 @@ class Task extends Model
         'name',
         'description',
         'priority',
+        'timestamp',
     ];
 
     /**
