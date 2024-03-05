@@ -21,7 +21,6 @@
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .box {
@@ -104,6 +103,10 @@
             padding: 10px;
             background-color: #f9f9f9;
             border-radius: 5px;
+        }
+
+        .timeslot{
+            padding: 20px;
         }
 
         .task-list {
@@ -192,35 +195,42 @@
         <div class="container">
             <h1 class="title">Daily Planner</h1>
             <div class="columns">
-                <div class="column is-6">
+                <div class="column is-8">
                     <!-- Sidebar for time slots -->
                     <div class="menu">
                         <p class="menu-label">Time Slots</p>
                         <ul class="menu-list">
-                            <li><a href="#" class="time-slot">06:00</a></li>
-                            <li><a href="#" class="time-slot">07:00</a></li>
-                            <li><a href="#" class="time-slot">08:00</a></li>
-                            <li><a href="#" class="time-slot">09:00</a></li>
-                            <li><a href="#" class="time-slot">10:00</a></li>
-                            <li><a href="#" class="time-slot">11:00</a></li>
-                            <li><a href="#" class="time-slot">12:00</a></li>
-                            <li><a href="#" class="time-slot">13:00</a></li>
-                            <li><a href="#" class="time-slot">14:00</a></li>
-                            <li><a href="#" class="time-slot">15:00</a></li>
-                            <li><a href="#" class="time-slot">16:00</a></li>
-                            <li><a href="#" class="time-slot">17:00</a></li>
-                            <li><a href="#" class="time-slot">18:00</a></li>
-                            <li><a href="#" class="time-slot">19:00</a></li>
-                            <li><a href="#" class="time-slot">20:00</a></li>
-                            <li><a href="#" class="time-slot">21:00</a></li>
-                            <li><a href="#" class="time-slot">22:00</a></li>
-                            <li><a href="#" class="time-slot">23:00</a></li>
+                            <li class="timeslot" data-time="06:00">06:00</li>
+                            <li class="timeslot" data-time="07:00">07:00</li>
+                            <li class="timeslot" data-time="08:00">08:00</li>
+                            <li class="timeslot" data-time="09:00">09:00</li>
+                            <li class="timeslot" data-time="10:00">10:00</li>
+                            <li class="timeslot" data-time="11:00">11:00</li>
+                            <li class="timeslot" data-time="12:00">12:00</li>
+                            <li class="timeslot" data-time="13:00">13:00</li>
+                            <li class="timeslot" data-time="14:00">14:00</li>
+                            <li class="timeslot" data-time="15:00">15:00</li>
+                            <li class="timeslot" data-time="16:00">16:00</li>
+                            <li class="timeslot" data-time="17:00">17:00</li>
+                            <li class="timeslot" data-time="18:00">18:00</li>
+                            <li class="timeslot" data-time="19:00">19:00</li>
+                            <li class="timeslot" data-time="20:00">20:00</li>
+                            <li class="timeslot" data-time="21:00">21:00</li>
+                            <li class="timeslot" data-time="22:00">22:00</li>
+                            <li class="timeslot" data-time="23:00">23:00</li>
+                            <li class="timeslot" data-time="00:00">00:00</li>
+                            <li class="timeslot" data-time="01:00">01:00</li>
+                            <li class="timeslot" data-time="02:00">02:00</li>
+                            <li class="timeslot" data-time="03:00">03:00</li>
+                            <li class="timeslot" data-time="04:00">04:00</li>
+                            <li class="timeslot" data-time="05:00">05:00</li>
                         </ul>
                     </div>
                 </div>
                 <div class="column">
                     <!-- Main section for tasks/events -->
-                    <div class="box">
+                    <div>
+                        <p class="menu-label">Daily tasks</p>
                         <!-- Task containers -->
                         <ul class="task-list mb-4" id="sortable-list">
                             @foreach ($tasks as $task)
@@ -345,6 +355,21 @@
                 });
         }
     });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const tasks = document.querySelectorAll('.task-card');
+
+        tasks.forEach(task => {
+            const timestamp = task.querySelector('.task-timestamp').textContent;
+            const timeslot = document.querySelector(`.timeslot[data-time="${timestamp}"]`);
+            if (timeslot) {
+                timeslot.insertAdjacentElement('afterend', task);
+            }
+        });
+    });
+
 </script>
 
 </body>
