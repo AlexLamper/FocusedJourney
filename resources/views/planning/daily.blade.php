@@ -24,52 +24,39 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .menu-list a {
-            color: #3273dc;
-        }
-
         .box {
             padding: 20px;
             border: 1px solid #dbdbdb;
             border-radius: 5px;
         }
 
-        .media-content {
-            margin-bottom: 10px;
+        .planner {
+            display: grid;
+            grid-template-columns: auto 1fr; /* Sidebar for time slots and main section for tasks */
+            gap: 10px;
         }
 
-        .title {
-            color: #4a4a4a;
+        .time-slot {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
         }
 
-        .subtitle {
-            color: #888;
+        .task-container {
+            display: grid;
+            grid-template-columns: repeat(24, 1fr); /* 24 columns for 24 hours */
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
         }
 
         .form-container {
-            background-color: #f5f5f5;
             padding: 20px;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .form-container .field {
             margin-bottom: 1.5rem;
-        }
-
-        .box {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .menu {
-            margin-bottom: 1.5rem;
-        }
-
-        .menu-label {
-            font-weight: bold;
         }
 
         .menu-list li a {
@@ -78,6 +65,137 @@
 
         .menu-list li a:hover {
             color: #3273dc;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /*Create Task Button */
+        .button-style {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff7f6e;
+            color: white;
+            font-weight: lighter;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .button-style:hover {
+            background-color: #ed7261;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #888;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-card {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .task-content {
+            flex-grow: 1;
+        }
+
+        .task-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .task-description {
+            color: #666;
+            font-size: 0.9em;
+            display: block;
+        }
+
+        .task-actions {
+            margin-left: 10px;
+        }
+
+        .delete-btn {
+            background-color: #ad2d36;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background-color: #bd222c;
+        }
+
+        /* Styles for tasks section */
+        .tasks-section {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* Styles for task cards */
+        .task-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Styles for task content */
+        .task-content {
+            flex-grow: 1;
+        }
+
+        /* Styles for task actions */
+        .task-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Styles for priority dropdown */
+        .priority-dropdown {
+            margin-right: 10px;
+        }
+
+        /* Styles for delete button */
+        .delete-btn {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
         }
 
     </style>
@@ -93,30 +211,30 @@
                     <div class="menu">
                         <p class="menu-label">Time Slots</p>
                         <ul class="menu-list">
-                            <li><a href="#">00:00</a></li>
-                            <li><a href="#">01:00</a></li>
-                            <li><a href="#">02:00</a></li>
-                            <li><a href="#">03:00</a></li>
-                            <li><a href="#">04:00</a></li>
-                            <li><a href="#">05:00</a></li>
-                            <li><a href="#">06:00</a></li>
-                            <li><a href="#">07:00</a></li>
-                            <li><a href="#">08:00</a></li>
-                            <li><a href="#">09:00</a></li>
-                            <li><a href="#">10:00</a></li>
-                            <li><a href="#">11:00</a></li>
-                            <li><a href="#">12:00</a></li>
-                            <li><a href="#">13:00</a></li>
-                            <li><a href="#">14:00</a></li>
-                            <li><a href="#">15:00</a></li>
-                            <li><a href="#">16:00</a></li>
-                            <li><a href="#">17:00</a></li>
-                            <li><a href="#">18:00</a></li>
-                            <li><a href="#">19:00</a></li>
-                            <li><a href="#">20:00</a></li>
-                            <li><a href="#">21:00</a></li>
-                            <li><a href="#">22:00</a></li>
-                            <li><a href="#">23:00</a></li>
+                            <li><a href="#" class="time-slot">00:00</a></li>
+                            <li><a href="#" class="time-slot">01:00</a></li>
+                            <li><a href="#" class="time-slot">02:00</a></li>
+                            <li><a href="#" class="time-slot">03:00</a></li>
+                            <li><a href="#" class="time-slot">04:00</a></li>
+                            <li><a href="#" class="time-slot">05:00</a></li>
+                            <li><a href="#" class="time-slot">06:00</a></li>
+                            <li><a href="#" class="time-slot">07:00</a></li>
+                            <li><a href="#" class="time-slot">08:00</a></li>
+                            <li><a href="#" class="time-slot">09:00</a></li>
+                            <li><a href="#" class="time-slot">10:00</a></li>
+                            <li><a href="#" class="time-slot">11:00</a></li>
+                            <li><a href="#" class="time-slot">12:00</a></li>
+                            <li><a href="#" class="time-slot">13:00</a></li>
+                            <li><a href="#" class="time-slot">14:00</a></li>
+                            <li><a href="#" class="time-slot">15:00</a></li>
+                            <li><a href="#" class="time-slot">16:00</a></li>
+                            <li><a href="#" class="time-slot">17:00</a></li>
+                            <li><a href="#" class="time-slot">18:00</a></li>
+                            <li><a href="#" class="time-slot">19:00</a></li>
+                            <li><a href="#" class="time-slot">20:00</a></li>
+                            <li><a href="#" class="time-slot">21:00</a></li>
+                            <li><a href="#" class="time-slot">22:00</a></li>
+                            <li><a href="#" class="time-slot">23:00</a></li>
                         </ul>
                     </div>
                 </div>
@@ -167,20 +285,38 @@
                         </div>
                         <!-- End of task creation form -->
 
-                        <!-- Existing tasks/events -->
-                        <div class="media">
-                            <div class="media-content">
-                                <p class="title is-4">09:00 - 10:00</p>
-                                <p class="subtitle is-6">Task 1</p>
+                        <!-- Daily planner grid -->
+                        <div class="planner">
+                            <!-- Task containers -->
+                            <div class="task-container">
+                                <ul class="task-list mb-4" id="sortable-list">
+                                    @foreach ($tasks as $task)
+                                        <li class="task-card" data-task-id="{{ $task->id }}">
+                                            <div class="task-content">
+                                                <span class="task-name">{{ $task->name }}</span>
+                                                <span class="task-description">{{ $task->description }}</span>
+                                                <span class="task-timestamp">{{ $task->timestamp }}</span>
+                                            </div>
+                                            <div class="task-actions">
+                                                <label for="priority">
+                                                    <select name="priority" class="priority-dropdown" data-task-id="{{ $task->id }}">
+                                                        <option value="Low" {{ $task->priority === 'Low' ? 'selected' : '' }}>Low</option>
+                                                        <option value="Medium" {{ $task->priority === 'Medium' ? 'selected' : '' }}>Medium</option>
+                                                        <option value="High" {{ $task->priority === 'High' ? 'selected' : '' }}>High</option>
+                                                    </select>
+                                                </label>
+                                                <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="delete-form">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="delete-btn">Delete</button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
+
                         </div>
-                        <div class="media">
-                            <div class="media-content">
-                                <p class="title is-4">10:00 - 11:00</p>
-                                <p class="subtitle is-6">Task 2</p>
-                            </div>
-                        </div>
-                        <!-- Add more tasks/events here -->
                     </div>
                 </div>
             </div>

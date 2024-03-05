@@ -23,9 +23,14 @@ class PlanningController extends Controller
 
     public function daily()
     {
-//        $dailyPlanning = Planning::where('type', 'daily')->get();
-        return view('planning.daily');
+        // Retrieve tasks associated with the authenticated user
+        $user = auth()->user();
+        $tasks = $user->tasks()->orderBy('order')->get();
+
+        // Return the view with tasks data
+        return view('planning.daily', compact('tasks'));
     }
+
 
     public function weekly()
     {

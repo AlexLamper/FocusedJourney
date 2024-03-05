@@ -24,9 +24,10 @@ class TaskController extends Controller
             ->orderBy('order')
             ->get();
 
-        // Return the tasks to the tasks.blade.php view
-        return view('tasks.index', ['tasks' => $tasks]);
+        // Return the tasks to both the tasks.index and planning.daily views
+        return view('tasks.index', compact('tasks')); // Pass the $tasks variable to the tasks.index view
     }
+
 
     public function store(Request $request)
     {

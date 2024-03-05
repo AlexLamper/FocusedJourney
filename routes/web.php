@@ -39,11 +39,13 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/planning', [PlanningController::class, 'index'])->name('planning');
-    Route::get('/planning/daily', [PlanningController::class, 'daily'])->name('planning.daily');
     Route::get('/planning/weekly', [PlanningController::class, 'weekly'])->name('planning.weekly');
     Route::get('/planning/monthly', [PlanningController::class, 'monthly'])->name('planning.monthly');
     Route::get('/planning/yearly', [PlanningController::class, 'yearly'])->name('planning.yearly');
 });
+
+Route::middleware('auth')->get('/planning/daily', [PlanningController::class, 'daily'])->name('planning.daily');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

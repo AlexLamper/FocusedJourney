@@ -96,7 +96,7 @@
                         <option value="High">High</option>
                     </select>
                 </div>
-                <button type="submit" class="button-style">Add Task</button>
+                <button type="submit" class="button-style" style="background-color: #ff7f6e">Add Task</button>
             </form>
         </div>
     </section>
