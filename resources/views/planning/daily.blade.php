@@ -28,6 +28,7 @@
             padding: 20px;
             border: 1px solid #dbdbdb;
             border-radius: 5px;
+            margin: 0 auto;
         }
 
         .planner {
@@ -37,9 +38,8 @@
         }
 
         .time-slot {
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-radius: 5px;
+            width: 100px;
+            display: inline-block;
         }
 
         .task-container {
@@ -53,6 +53,7 @@
         .form-container {
             padding: 20px;
             border-radius: 5px;
+            margin: 0 auto;
         }
 
         .form-container .field {
@@ -63,13 +64,15 @@
             color: #333;
         }
 
-        .menu-list li a:hover {
-            color: #3273dc;
-        }
 
         h1 {
             text-align: center;
             margin-bottom: 20px;
+        }
+
+        a{
+            background-color: transparent;
+            text-decoration: none;
         }
 
         /*Create Task Button */
@@ -87,7 +90,6 @@
         }
 
         .button-style:hover {
-            background-color: #ed7261;
             color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -104,24 +106,20 @@
             border-radius: 5px;
         }
 
-        .empty-message {
-            text-align: center;
-            color: #888;
-        }
-
         .task-list {
             list-style: none;
             padding: 0;
         }
 
         .task-card {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
+            padding: 0; /* Remove padding */
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box; /* Include padding and border in the element's total width */
+            border: none; /* Remove border */
         }
 
         .task-content {
@@ -157,12 +155,6 @@
             background-color: #bd222c;
         }
 
-        /* Styles for tasks section */
-        .tasks-section {
-            width: 80%;
-            margin: 0 auto;
-        }
-
         /* Styles for task cards */
         .task-card {
             display: flex;
@@ -177,16 +169,10 @@
         .task-content {
             flex-grow: 1;
         }
-
         /* Styles for task actions */
         .task-actions {
             display: flex;
             align-items: center;
-        }
-
-        /* Styles for priority dropdown */
-        .priority-dropdown {
-            margin-right: 10px;
         }
 
         /* Styles for delete button */
@@ -206,17 +192,11 @@
         <div class="container">
             <h1 class="title">Daily Planner</h1>
             <div class="columns">
-                <div class="column is-2">
+                <div class="column is-6">
                     <!-- Sidebar for time slots -->
                     <div class="menu">
                         <p class="menu-label">Time Slots</p>
                         <ul class="menu-list">
-                            <li><a href="#" class="time-slot">00:00</a></li>
-                            <li><a href="#" class="time-slot">01:00</a></li>
-                            <li><a href="#" class="time-slot">02:00</a></li>
-                            <li><a href="#" class="time-slot">03:00</a></li>
-                            <li><a href="#" class="time-slot">04:00</a></li>
-                            <li><a href="#" class="time-slot">05:00</a></li>
                             <li><a href="#" class="time-slot">06:00</a></li>
                             <li><a href="#" class="time-slot">07:00</a></li>
                             <li><a href="#" class="time-slot">08:00</a></li>
@@ -241,82 +221,50 @@
                 <div class="column">
                     <!-- Main section for tasks/events -->
                     <div class="box">
-                        <!-- Task creation form -->
-                        <div class="form-container">
-                            <h1 class="title">Create a Task</h1>
-                            <form method="post">
-                                @csrf
-                                <div class="field">
-                                    <label class="label" for="name">Task Name:</label>
-                                    <div class="control">
-                                        <input class="input" type="text" id="name" name="name" required>
+                        <!-- Task containers -->
+                        <ul class="task-list mb-4" id="sortable-list">
+                            @foreach ($tasks as $task)
+                                <li class="task-card" data-task-id="{{ $task->id }}">
+                                    <div class="task-content">
+                                        <span class="task-name">{{ $task->name }}</span>
+                                        <span class="task-description">{{ $task->description }}</span>
+                                        <span class="task-timestamp">{{ $task->timestamp }}</span>
                                     </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label" for="description">Description:</label>
-                                    <div class="control">
-                                        <textarea class="textarea" id="description" name="description"></textarea>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label" for="timestamp">Timestamp:</label>
-                                    <div class="control">
-                                        <input class="input" type="datetime-local" id="timestamp" name="timestamp" required>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label" for="priority">Priority:</label>
-                                    <div class="control">
-                                        <div class="select">
-                                            <select id="priority" name="priority">
-                                                <option value="Low">Low</option>
-                                                <option value="Medium">Medium</option>
-                                                <option value="High">High</option>
+                                    <div class="task-actions">
+                                        <label for="priority">
+                                            <select name="priority" class="priority-dropdown" data-task-id="{{ $task->id }}">
+                                                <option value="Low" {{ $task->priority === 'Low' ? 'selected' : '' }}>Low</option>
+                                                <option value="Medium" {{ $task->priority === 'Medium' ? 'selected' : '' }}>Medium</option>
+                                                <option value="High" {{ $task->priority === 'High' ? 'selected' : '' }}>High</option>
                                             </select>
-                                        </div>
+                                        </label>
+                                        <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="delete-btn">Delete</button>
+                                        </form>
                                     </div>
-                                </div>
-                                <div class="field">
-                                    <div class="control">
-                                        <button type="submit" class="button is-primary">Add Task</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- End of task creation form -->
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
 
-                        <!-- Daily planner grid -->
-                        <div class="planner">
-                            <!-- Task containers -->
-                            <div class="task-container">
-                                <ul class="task-list mb-4" id="sortable-list">
-                                    @foreach ($tasks as $task)
-                                        <li class="task-card" data-task-id="{{ $task->id }}">
-                                            <div class="task-content">
-                                                <span class="task-name">{{ $task->name }}</span>
-                                                <span class="task-description">{{ $task->description }}</span>
-                                                <span class="task-timestamp">{{ $task->timestamp }}</span>
-                                            </div>
-                                            <div class="task-actions">
-                                                <label for="priority">
-                                                    <select name="priority" class="priority-dropdown" data-task-id="{{ $task->id }}">
-                                                        <option value="Low" {{ $task->priority === 'Low' ? 'selected' : '' }}>Low</option>
-                                                        <option value="Medium" {{ $task->priority === 'Medium' ? 'selected' : '' }}>Medium</option>
-                                                        <option value="High" {{ $task->priority === 'High' ? 'selected' : '' }}>High</option>
-                                                    </select>
-                                                </label>
-                                                <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="delete-form">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="delete-btn">Delete</button>
-                                                </form>
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                    <div class="box">
+                        <h2 class="subtitle">Today's Focus</h2>
+{{--                        <form action="{{ route('focus.store') }}" method="POST">--}}
+{{--                            @csrf--}}
+                            <div class="field">
+                                <label class="label" for="todays-focus">Enter today's focus:</label>
+                                <div class="control">
+                                    <input class="input" type="text" id="todays-focus" name="todays_focus">
+                                </div>
                             </div>
-
-                        </div>
+                            <div class="field">
+                                <div class="control">
+                                    <button type="submit" class="button is-primary">Save</button>
+                                </div>
+                            </div>
+{{--                        </form>--}}
                     </div>
                 </div>
             </div>
@@ -324,6 +272,80 @@
     </section>
 </x-app-layout>
 @include('components.footer')
+
+<script>
+    // Function to handle priority change
+    function handlePriorityChange(taskId, newPriority) {
+        fetch(`/tasks/${taskId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ priority: newPriority })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Task priority updated successfully:', data);
+            })
+            .catch(error => {
+                console.error('There was a problem updating task priority:', error);
+            });
+    }
+
+    // Add event listener to priority dropdowns
+    document.querySelectorAll('.priority-dropdown').forEach(dropdown => {
+        dropdown.addEventListener('change', event => {
+            const taskId = event.target.dataset.taskId;
+            const newPriority = event.target.value;
+            handlePriorityChange(taskId, newPriority);
+        });
+    });
+</script>
+
+<script>
+    const sortableList = new Sortable(document.getElementById('sortable-list'), {
+        animation: 150,
+        handle: '.task-card',
+        onEnd: function (evt) {
+            const taskElements = document.querySelectorAll('.task-card');
+            const newOrder = [];
+            taskElements.forEach((task, index) => {
+                newOrder.push({
+                    id: task.dataset.taskId,
+                    order: index + 1 // Index starts from 0, so add 1 to start from 1
+                });
+            });
+
+            // Send an AJAX request to the server to update the task order
+            fetch('/tasks/update-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify(newOrder)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Task order updated successfully:', data);
+                })
+                .catch(error => {
+                    console.error('There was a problem updating task order:', error);
+                });
+        }
+    });
+</script>
 
 </body>
 </html>
