@@ -107,6 +107,8 @@
 
         .timeslot{
             padding: 20px;
+            background-color: #f7fafc;
+            border: solid 1px gray;
         }
 
         .task-list {
@@ -228,7 +230,26 @@
                     </div>
                 </div>
                 <div class="column">
-                    <!-- Main section for tasks/events -->
+                    <div>
+                        <p class="menu-label">Daily tasks</p>
+                        {{--                        <form action="{{ route('focus.store') }}" method="POST">--}}
+                        {{--                            @csrf--}}
+                        <div class="field">
+                            <label class="label" for="todays-focus">Enter today's focus:</label>
+                            <div class="control">
+                                <input class="input" type="text" id="todays-focus" name="todays_focus">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="button-style" style="background-color: #ff7f6e;">Save</button>
+                            </div>
+                        </div>
+                        {{--                        </form>--}}
+                    </div>
+                    <div style="height: 20px; border-top: solid 1px gray; margin-top: 20px">
+
+                    </div>
                     <div>
                         <p class="menu-label">Daily tasks</p>
                         <!-- Task containers -->
@@ -251,30 +272,12 @@
                                         <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="delete-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="delete-btn">Delete</button>
+                                            <button type="submit" class="delete-btn" style="background-color: #ef4444; margin-left: 10px">Delete</button>
                                         </form>
                                     </div>
                                 </li>
                             @endforeach
                         </ul>
-                    </div>
-
-                    <div class="box">
-                        <h2 class="subtitle">Today's Focus</h2>
-{{--                        <form action="{{ route('focus.store') }}" method="POST">--}}
-{{--                            @csrf--}}
-                            <div class="field">
-                                <label class="label" for="todays-focus">Enter today's focus:</label>
-                                <div class="control">
-                                    <input class="input" type="text" id="todays-focus" name="todays_focus">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <button type="submit" class="button is-primary">Save</button>
-                                </div>
-                            </div>
-{{--                        </form>--}}
                     </div>
                 </div>
             </div>
