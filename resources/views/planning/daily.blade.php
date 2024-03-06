@@ -246,7 +246,7 @@
                 </div>
                 <div class="column">
                     <div>
-                        <p class="menu-label">Daily tasks</p>
+                        <p class="menu-label">Todays Focus</p>
                         {{--                        <form action="{{ route('focus.store') }}" method="POST">--}}
                         {{--                            @csrf--}}
                         <div class="field">
@@ -293,6 +293,7 @@
                                 </li>
                             @endforeach
                         </ul>
+                        <a href="/tasks/create"><button class="button-style" style="background-color: #ff7f6e;">Add a new task</button></a>
                     </div>
                 </div>
             </div>
