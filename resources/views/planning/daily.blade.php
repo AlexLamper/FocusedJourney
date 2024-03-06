@@ -247,20 +247,7 @@
                 <div class="column">
                     <div>
                         <p class="menu-label">Todays Focus</p>
-                        {{--                        <form action="{{ route('focus.store') }}" method="POST">--}}
-                        {{--                            @csrf--}}
-                        <div class="field">
-                            <label class="label" for="todays-focus">Enter today's focus:</label>
-                            <div class="control">
-                                <input class="input" type="text" id="todays-focus" name="todays_focus">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <button type="submit" class="button-style" style="background-color: #ff7f6e;">Save</button>
-                            </div>
-                        </div>
-                        {{--                        </form>--}}
+                        <p>Daily Focus: {{ $todaysFocus->text ?? 'No focus set yet' }}</p>
                     </div>
                     <div style="height: 20px; border-top: solid 1px gray; margin-top: 20px">
 

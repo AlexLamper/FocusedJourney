@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\PlanningController;
+use App\Http\Controllers\TodaysFocusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->get('/planning/daily', [PlanningController::class, 'daily'])->name('planning.daily');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/todays-focus', [TodaysFocusController::class, 'edit'])->name('todays-focus.edit');
+    Route::post('/todays-focus/update', [TodaysFocusController::class, 'update'])->name('todays-focus.update');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
