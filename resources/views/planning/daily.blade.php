@@ -261,7 +261,7 @@
                                     <div class="task-content">
                                         <span class="task-name">{{ $task->name }}</span>
                                         <span class="task-description">{{ $task->description }}</span>
-                                        <span class="task-timestamp">{{ $task->timestamp }}</span>
+                                        <span class="task-timestamp" style="color: #333; font-weight: bold;">{{ $task->timestamp }}</span>
                                     </div>
                                     <div class="task-actions">
                                         <label for="priority">
@@ -274,7 +274,7 @@
                                         <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="delete-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="delete-btn" style="background-color: #ef4444; margin-left: 10px">Delete</button>
+                                            <button type="submit" class="delete-btn" style="background-color: #ef4444; margin-left: 10px;">Delete</button>
                                         </form>
                                     </div>
                                 </li>

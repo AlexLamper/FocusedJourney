@@ -19,7 +19,7 @@
                         {{ __('Focus') }}
                     </x-nav-link>
                     <x-nav-link :href="route('tasks')" :active="request()->routeIs('tasks')">
-                        {{ __('Tasks') }}
+                        {{ __('Todo') }}
                     </x-nav-link>
                     <x-nav-link :href="route('planning')" :active="request()->routeIs('planning')">
                         {{ __('Planning') }}

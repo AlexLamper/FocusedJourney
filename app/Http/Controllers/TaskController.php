@@ -61,7 +61,7 @@ class TaskController extends Controller
         $task->save();
 
         // Redirect back to the task list page with a success message
-        return redirect('/tasks')->with('success', 'Task created successfully!');
+        return redirect('/planning')->with('success', 'Task created successfully!');
     }
 
     public function create()
@@ -83,7 +83,7 @@ class TaskController extends Controller
         // Delete the task
         $task->delete();
 
-        return redirect()->route('tasks')->with('success', 'Task deleted successfully.');
+        return back()->with('success', 'Task deleted successfully.');
     }
 
     public function updatePriority(Request $request, Task $task)
