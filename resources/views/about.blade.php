@@ -36,6 +36,7 @@
 </head>
 <body class="antialiased bg-white">
     <x-app-layout>
+        @section('content')
         <!-- Hero Section -->
         <section class="hero is-fullheight section">
             <div class="hero-body">
@@ -145,6 +146,7 @@
                 </div>
             </div>
         </div>
+        @endsection
     </x-app-layout>
     @include('components.footer')
 </body>

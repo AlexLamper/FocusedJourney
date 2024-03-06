@@ -196,9 +196,11 @@
 </head>
 <body class="antialiased bg-white">
 <x-app-layout>
+    @section('content')
     <section class="section">
         <h1>The planning index page</h1>
     </section>
+    @endsection
 </x-app-layout>
 @include('components.footer')
 

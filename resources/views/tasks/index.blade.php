@@ -195,6 +195,7 @@
 </head>
 <body class="antialiased bg-white">
 <x-app-layout>
+    @section('content')
     <section class="section">
         <div class="form-container">
             <h1 class="title">Your Tasks</h1>
@@ -227,6 +228,7 @@
             <a href="/tasks/create" class="button-style">Create a new task</a>
         </div>
     </section>
+    @endsection
 </x-app-layout>
 @include('components.footer')
 
