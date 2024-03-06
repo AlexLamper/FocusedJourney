@@ -53,6 +53,12 @@ class FocusSessionController extends Controller
         return view('focus_session.index', compact('focusSessions'));
     }
 
+    public function start()
+    {
+        $focusSessions = FocusSession::all();
+
+        return view('focus_session.start', ['focusSessions' => $focusSessions]);
+    }
 
     /**
      * Update the specified focus session in storage.

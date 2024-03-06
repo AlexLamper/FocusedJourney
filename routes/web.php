@@ -28,6 +28,7 @@ Route::get('/about', function () {
 
 Route::get('/focus-sessions', [FocusSessionController::class, 'index'])->name('focus-sessions.index');
 Route::post('/focus-sessions', [FocusSessionController::class, 'store'])->name('focus-sessions.store');
+Route::get('/start-focus', [FocusSessionController::class, 'start'])->name('start-focus');
 
 Route::middleware('auth')->group(function () {
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');

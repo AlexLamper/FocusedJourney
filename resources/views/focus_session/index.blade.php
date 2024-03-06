@@ -171,6 +171,7 @@
 <body class="antialiased">
 <div id="overlay"></div>
 <x-app-layout>
+    @section('content')
     <section id="section" style="min-height: 93vh; display: flex; flex-direction: column;">
         <div style="height: 15%; display: flex; justify-content: space-between; padding-top: 20px">
             <div style="width: 25%;">
@@ -227,6 +228,7 @@
         </div>
 
     </section>
+    @endsection
 </x-app-layout>
 
 @foreach ($focusSessions as $focusSession)
