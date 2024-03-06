@@ -23,13 +23,19 @@ class PlanningController extends Controller
 
     public function daily()
     {
-        // Retrieve tasks associated with the authenticated user
         $user = auth()->user();
         $tasks = $user->tasks()->orderBy('order')->get();
 
-        // Return the view with tasks data
-        return view('planning.daily', compact('tasks'));
+        // Generate timeslots array
+        $timeslots = [];
+        for ($hour = 0; $hour < 24; $hour++) {
+            $timeslots[] = sprintf('%02d:00', $hour);
+        }
+
+        // Load the daily view and pass the $tasks and $timeslots variables
+        return view('planning.daily', ['tasks' => $tasks, 'timeslots' => $timeslots]);
     }
+
 
 
     public function weekly()

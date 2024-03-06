@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+
     public function index()
     {
         // Retrieve the authenticated user, if any
@@ -24,9 +26,16 @@ class TaskController extends Controller
             ->orderBy('order')
             ->get();
 
-        // Return the tasks to the tasks.blade.php view
-        return view('tasks.index', ['tasks' => $tasks]);
+        // Generate timeslots array
+        $timeslots = [];
+        for ($hour = 0; $hour < 24; $hour++) {
+            $timeslots[] = sprintf('%02d:00', $hour);
+        }
+
+        // Return the tasks and timeslots to the tasks.blade.php view
+        return view('tasks.index', compact('tasks', 'timeslots'));
     }
+
 
     public function store(Request $request)
     {

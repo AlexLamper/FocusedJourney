@@ -217,7 +217,7 @@
                             <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="delete-btn">Delete</button>
+                                <button type="submit" class="delete-btn" style="background-color: #ef4444">Delete</button>
                             </form>
                         </div>
                     </li>
