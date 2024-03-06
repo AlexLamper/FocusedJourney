@@ -101,13 +101,13 @@
         li {
             margin-bottom: 10px;
             padding: 10px;
-            background-color: #f9f9f9;
+            background-color: white;
             border-radius: 5px;
         }
 
         .timeslot{
             padding: 20px;
-            background-color: #f7fafc;
+            background-color: #f9f9f9;
             border: solid 1px gray;
         }
 
@@ -270,7 +270,7 @@
                         <!-- Task containers -->
                         <ul class="task-list mb-4" id="sortable-list">
                             @foreach ($tasks as $task)
-                                <li class="task-card" data-task-id="{{ $task->id }}">
+                                <li class="task-card" data-task-id="{{ $task->id }}" style="background-color: #f9f9f9;">
                                     <div class="task-content">
                                         <span class="task-name">{{ $task->name }}</span>
                                         <span class="task-description">{{ $task->description }}</span>

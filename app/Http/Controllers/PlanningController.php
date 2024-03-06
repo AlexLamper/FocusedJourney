@@ -28,7 +28,7 @@ class PlanningController extends Controller
 
         // Generate timeslots array
         $timeslots = [];
-        for ($hour = 0; $hour < 24; $hour++) {
+        for ($hour = 6; $hour < 24; $hour++) {
             $timeslots[] = sprintf('%02d:00', $hour);
         }
 
