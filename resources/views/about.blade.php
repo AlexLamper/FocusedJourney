@@ -100,8 +100,6 @@
             </div>
         </section>
 
-        <hr style="border-top: solid 1px gray">
-
         <div class="main-section">
             <div class="main-content" style="font-size: larger">
                 <h2 class="title is-8" style="color: black; margin-bottom: 30px">Why Focus Matters</h2>
@@ -112,8 +110,6 @@
                 <p>Ultimately, mastering the art of focus is a skill that can transform your life. By cultivating mindfulness, setting clear goals, and practicing disciplined attention, you can unlock your full potential and accomplish extraordinary feats.</p>
             </div>
         </div>
-
-        <hr style="border-top: solid 1px gray">
 
         <div class="section features-section mt-16">
             <div class="container">
