@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('start-focus')" :active="request()->routeIs('start-focus')">
                         {{ __('Focus') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('tasks')" :active="request()->routeIs('tasks')">
+                    <x-nav-link :href="route('todo')" :active="request()->routeIs('todo')">
                         {{ __('Todo') }}
                     </x-nav-link>
                     <x-nav-link :href="route('planning')" :active="request()->routeIs('planning')">
@@ -101,8 +101,8 @@
             <x-responsive-nav-link :href="route('start-focus')" :active="request()->routeIs('start-focus')">
                 {{ __('Focus') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('tasks')" :active="request()->routeIs('tasks')">
-                {{ __('Tasks') }}
+            <x-responsive-nav-link :href="route('todo')" :active="request()->routeIs('todo')">
+                {{ __('Todo') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('planning')" :active="request()->routeIs('planning')">
                 {{ __('Planning') }}

@@ -7,6 +7,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\TodaysFocusController;
 use App\Http\Controllers\HabitsController;
+use App\Http\Controllers\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,13 @@ Route::post('/focus-sessions', [FocusSessionController::class, 'store'])->name('
 Route::get('/start-focus', [FocusSessionController::class, 'start'])->name('start-focus');
 
 Route::get('/habits', [HabitsController::class, 'index'])->name('habits.index');
+
+Route::get('/todo', [TodoController::class, 'index'])->name('todo');
+Route::post('/todo', [TodoController::class, 'store']);
+Route::get('/todo/create', [TodoController::class, 'create'])->name('todo.create');
+Route::post('/todo/update-order', [TodoController::class, 'updateOrder']);
+Route::delete('/todo/{todo}', [TodoController::class, 'destroy'])->name('todo.destroy');
+Route::put('/todo/{todo}', [TodoController::class, 'updatePriority'])->name('todo.updatePriority');
 
 Route::middleware('auth')->group(function () {
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');

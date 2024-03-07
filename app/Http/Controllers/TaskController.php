@@ -36,7 +36,6 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks', 'timeslots'));
     }
 
-
     public function store(Request $request)
     {
         // Validate the incoming request data

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('todo', function (Blueprint $table) {
-            $table->integer('order')->default(0);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('todo', function (Blueprint $table) {
-            $table->dropColumn('order');
+            $table->dropColumn('user_id');
         });
     }
 };
