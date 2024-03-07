@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('planning')" :active="request()->routeIs('planning')">
                         {{ __('Planning') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('habits.index')" :active="request()->routeIs('habits')">
+                        {{ __('Habits') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
                         {{ __('About') }}
                     </x-nav-link>
@@ -66,13 +69,14 @@
                     </x-dropdown>
                 @else
                     <div class="space-x-4">
-                        <x-nav-link :href="route('login')">
+                        <x-nav-link :href="route('login')" class="px-3 py-2">
                             {{ __('Log in') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('register')">
+                        <x-nav-link :href="route('register')" class="px-3 py-2">
                             {{ __('Register') }}
                         </x-nav-link>
                     </div>
+
                 @endauth
             </div>
 
@@ -102,6 +106,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('planning')" :active="request()->routeIs('planning')">
                 {{ __('Planning') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('habits.index')" :active="request()->routeIs('habits')">
+                {{ __('Habits') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
                 {{ __('About') }}

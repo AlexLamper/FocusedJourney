@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\TodaysFocusController;
+use App\Http\Controllers\HabitsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::get('/about', function () {
 Route::get('/focus-sessions', [FocusSessionController::class, 'index'])->name('focus-sessions.index');
 Route::post('/focus-sessions', [FocusSessionController::class, 'store'])->name('focus-sessions.store');
 Route::get('/start-focus', [FocusSessionController::class, 'start'])->name('start-focus');
+
+Route::get('/habits', [HabitsController::class, 'index'])->name('habits.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
