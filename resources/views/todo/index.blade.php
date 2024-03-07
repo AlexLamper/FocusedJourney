@@ -205,7 +205,7 @@
                             <div class="task-content">
                                 <span class="task-name">{{ $todo->name }}</span>
                                 <span class="task-description">{{ $todo->description }}</span>
-                                {{--                                <span class="task-timestamp">{{ $todo->timestamp }}</span>--}}
+                                <span class="task-due-date">Due Date: {{ date('Y-m-d H:i', strtotime($todo->due_date)) }}</span>
                             </div>
                             <div class="task-actions">
                                 <label for="priority">
@@ -224,7 +224,6 @@
                         </li>
                     @endforeach
                 </ul>
-
                 <a href="{{ route('todo.create') }}" class="button-style">Create a new todo</a>
             </div>
         </section>

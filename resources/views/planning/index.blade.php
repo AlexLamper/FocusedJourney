@@ -48,6 +48,57 @@
             color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+        .planning-section {
+            background-color: #f0f0f0;
+            padding: 50px 0;
+        }
+
+        .button-group {
+            margin-bottom: 50px; /* Add spacing between button group and content */
+        }
+
+        .planning-content {
+            display: flex;
+            justify-content: center;
+        }
+
+        .timeline {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .event {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        .event::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #007bff;
+            border-radius: 50%;
+        }
+
+        .event-date {
+            font-size: 18px;
+            color: #007bff;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .event-description {
+            font-size: 16px;
+            color: #333;
+            margin-left: 15px;
+        }
+
     </style>
 </head>
 <body class="antialiased bg-white">
@@ -63,8 +114,22 @@
                     <a href="{{ route('planning.monthly') }}" class="button">Monthly</a>
                     <a href="{{ route('planning.yearly') }}" class="button">Yearly</a>
                 </div>
-                <div class="content">
-                    <p>This is the index page for planning. Choose a specific view from the buttons above.</p>
+                <div class="content planning-content">
+                    <div class="timeline">
+                        <div class="event">
+                            <div class="event-date">March 5, 2024</div>
+                            <div class="event-description">Meeting with client</div>
+                        </div>
+                        <div class="event">
+                            <div class="event-date">March 8, 2024</div>
+                            <div class="event-description">Project deadline</div>
+                        </div>
+                        <div class="event">
+                            <div class="event-date">March 12, 2024</div>
+                            <div class="event-description">Team brainstorming session</div>
+                        </div>
+                        <!-- More events can be added here -->
+                    </div>
                 </div>
             </div>
         </section>
