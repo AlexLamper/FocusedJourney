@@ -101,5 +101,31 @@ class TodoController extends Controller
         }
     }
 
+    public function toggleStatus(Request $request, Todo $todo)
+    {
+        try {
+            // Validate the incoming request data
+            $request->validate([
+                'status' => 'required|in:pending,completed',
+            ]);
+
+            // Update the todo item's status
+            $todo->status = $request->status;
+            $todo->save();
+
+            return response()->json(['message' => 'Todo status toggled successfully']);
+        } catch (\Exception $e) {
+            \Log::error('Error toggling todo status: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
+    }
+
+    public function statuses()
+    {
+        $user = auth()->user();
+        $todos = Todo::where('user_id', $user->id)->get(['id', 'status']);
+        return response()->json($todos);
+    }
+
 
 }

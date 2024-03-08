@@ -203,7 +203,12 @@
                     @foreach ($todos as $todo)
                         <li class="task-card" data-task-id="{{ $todo->id }}">
                             <div class="task-content">
-                                <span class="task-name">{{ $todo->name }}</span>
+                                <span class="task-name">
+                                    <label>
+                                        <input type="checkbox" class="toggle-status" data-todo-id="{{ $todo->id }}">
+                                    </label>
+                                    {{ $todo->name }}
+                                </span>
                                 <span class="task-description">{{ $todo->description }}</span>
                                 <span class="task-due-date">Due Date: {{ date('Y-m-d H:i', strtotime($todo->due_date)) }}</span>
                             </div>
@@ -230,6 +235,61 @@
     @endsection
 </x-app-layout>
 @include('components.footer')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Function to fetch todo statuses and set checkboxes
+        function fetchTodoStatuses() {
+            $.ajax({
+                url: '/todos/statuses',
+                method: 'GET',
+                success: function(response) {
+                    response.forEach(function(todo) {
+                        var checkbox = $('.toggle-status[data-todo-id="' + todo.id + '"]');
+                        if (todo.status === 'completed') {
+                            checkbox.prop('checked', true);
+                        } else {
+                            checkbox.prop('checked', false);
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    // Handle error if needed
+                }
+            });
+        }
+
+        // Fetch todo statuses and set checkboxes when the page loads
+        fetchTodoStatuses();
+
+        // Event listener for checkbox change
+        $('.toggle-status').on('change', function() {
+            var todoId = $(this).data('todo-id');
+            var isChecked = $(this).is(':checked');
+
+            // Send AJAX request to toggle the status
+            $.ajax({
+                url: '/todos/' + todoId + '/toggle-status',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    status: isChecked ? 'completed' : 'pending'
+                },
+                success: function(response) {
+                    console.log(response.message);
+                    // Optionally update UI if needed
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    // Handle error if needed
+                }
+            });
+        });
+    });
+</script>
 
 <script>
     // Function to handle priority change

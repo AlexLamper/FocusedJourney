@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/todo/update-order', [TodoController::class, 'updateOrder']);
     Route::delete('/todo/{todo}', [TodoController::class, 'destroy'])->name('todo.destroy');
     Route::put('/todo/{todo}', [TodoController::class, 'updatePriority'])->name('todo.updatePriority');
+    Route::post('/todos/{todo}/toggle-status', [TodoController::class, 'toggleStatus'])->name('todos.toggleStatus');
+    Route::get('/todos/statuses', [TodoController::class, 'statuses']);
 });
 
 Route::middleware('auth')->group(function () {
@@ -78,7 +80,6 @@ Route::middleware('auth')->get('/planning/daily', function () {
 
 Route::get('/todays-focus', [TodaysFocusController::class, 'show'])->name('todays-focus.show');
 Route::post('/todays-focus/update', [TodaysFocusController::class, 'update'])->name('todays-focus.update');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
