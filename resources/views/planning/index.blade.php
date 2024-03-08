@@ -115,21 +115,20 @@
                     <a href="{{ route('planning.yearly') }}" class="button">Yearly</a>
                 </div>
                 <div class="content planning-content">
-                    <div class="timeline">
-                        <div class="event">
-                            <div class="event-date">March 5, 2024</div>
-                            <div class="event-description">Meeting with client</div>
-                        </div>
-                        <div class="event">
-                            <div class="event-date">March 8, 2024</div>
-                            <div class="event-description">Project deadline</div>
-                        </div>
-                        <div class="event">
-                            <div class="event-date">March 12, 2024</div>
-                            <div class="event-description">Team brainstorming session</div>
-                        </div>
-                        <!-- More events can be added here -->
-                    </div>
+{{--                    <div class="timeline">--}}
+{{--                        <div class="event">--}}
+{{--                            <div class="event-date">March 5, 2024</div>--}}
+{{--                            <div class="event-description">Meeting with client</div>--}}
+{{--                        </div>--}}
+{{--                        <div class="event">--}}
+{{--                            <div class="event-date">March 8, 2024</div>--}}
+{{--                            <div class="event-description">Project deadline</div>--}}
+{{--                        </div>--}}
+{{--                        <div class="event">--}}
+{{--                            <div class="event-date">March 12, 2024</div>--}}
+{{--                            <div class="event-description">Team brainstorming session</div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </section>

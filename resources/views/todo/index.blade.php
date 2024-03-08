@@ -191,6 +191,11 @@
             background-color: #0056b3;
         }
 
+        .completed-todo {
+            text-decoration: line-through;
+            /* Optionally adjust styles for completed tasks */
+        }
+
     </style>
 </head>
 <body class="antialiased bg-white">
