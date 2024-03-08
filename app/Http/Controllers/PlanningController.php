@@ -37,7 +37,6 @@ class PlanningController extends Controller
     }
 
 
-
     public function weekly()
     {
 //        $weeklyPlanning = Planning::where('type', 'weekly')->get();

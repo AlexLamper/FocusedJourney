@@ -247,11 +247,15 @@
                 <div class="column">
                     <div>
                         <p class="menu-label">Todays Focus</p>
-                        <p>Daily Focus: {{ $todaysFocus->text ?? 'No focus set yet' }}</p>
+                        @if($todaysFocus)
+                            <p>{{ $todaysFocus->text }}</p>
+                        @else
+                            <p>No focus set for today.</p>
+                        @endif
                     </div>
-                    <div style="height: 20px; border-top: solid 1px gray; margin-top: 20px">
 
-                    </div>
+                    <div style="height: 20px; border-top: solid 1px gray; margin-top: 20px"></div>
+
                     <div>
                         <p class="menu-label">Daily tasks</p>
                         <!-- Task containers -->

@@ -59,12 +59,27 @@ Route::middleware('auth')->group(function () {
     Route::get('/planning/yearly', [PlanningController::class, 'yearly'])->name('planning.yearly');
 });
 
-Route::middleware('auth')->get('/planning/daily', [PlanningController::class, 'daily'])->name('planning.daily');
+Route::middleware('auth')->get('/planning/daily', function () {
+    // Call the show() method of TodaysFocusController to get the today's focus
+    $todaysFocusController = new TodaysFocusController();
+    $todaysFocus = $todaysFocusController->show();
 
-Route::middleware('auth')->group(function () {
-    Route::get('/todays-focus', [TodaysFocusController::class, 'edit'])->name('todays-focus.edit');
-    Route::post('/todays-focus/update', [TodaysFocusController::class, 'update'])->name('todays-focus.update');
-});
+    // Call the daily() method of PlanningController to get tasks and timeslots
+    $planningController = new PlanningController();
+    $timeslotsAndTasks = $planningController->daily();
+
+    // Pass the data to the view
+    return view('planning.daily', [
+        'todaysFocus' => $todaysFocus,
+        'timeslots' => $timeslotsAndTasks['timeslots'],
+        'tasks' => $timeslotsAndTasks['tasks'],
+    ]);
+})->name('planning.daily');
+
+
+Route::get('/todays-focus', [TodaysFocusController::class, 'show'])->name('todays-focus.show');
+Route::post('/todays-focus/update', [TodaysFocusController::class, 'update'])->name('todays-focus.update');
+Route::middleware('auth')->post('/todays-focus/create', [TodaysFocusController::class, 'create'])->name('todays-focus.create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
