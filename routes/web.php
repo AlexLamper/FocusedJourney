@@ -41,8 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/todo/update-order', [TodoController::class, 'updateOrder']);
     Route::delete('/todo/{todo}', [TodoController::class, 'destroy'])->name('todo.destroy');
     Route::put('/todo/{todo}', [TodoController::class, 'updatePriority'])->name('todo.updatePriority');
-    Route::post('/todos/{todo}/toggle-status', [TodoController::class, 'toggleStatus'])->name('todos.toggleStatus');
-    Route::get('/todos/statuses', [TodoController::class, 'statuses']);
+    Route::put('/todos/{todo}/toggle-completed', [TodoController::class, 'toggleCompleted'])->name('todos.toggleCompleted');
 });
 
 Route::middleware('auth')->group(function () {

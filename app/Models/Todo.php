@@ -16,7 +16,7 @@ class Todo extends Model
         'description',
         'priority',
         'due_date',
-        'status',
+        'completed', // Updated field name
     ];
 
     /**

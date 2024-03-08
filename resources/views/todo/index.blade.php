@@ -205,7 +205,7 @@
                             <div class="task-content">
                                 <span class="task-name">
                                     <label>
-                                        <input type="checkbox" class="toggle-status" data-todo-id="{{ $todo->id }}">
+                                        <input type="checkbox" class="toggle-status" data-todo-id="{{ $todo->id }}" {{ $todo->completed ? 'checked' : '' }}>
                                     </label>
                                     {{ $todo->name }}
                                 </span>
@@ -236,35 +236,10 @@
 </x-app-layout>
 @include('components.footer')
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
     $(document).ready(function() {
-        // Function to fetch todo statuses and set checkboxes
-        function fetchTodoStatuses() {
-            $.ajax({
-                url: '/todos/statuses',
-                method: 'GET',
-                success: function(response) {
-                    response.forEach(function(todo) {
-                        var checkbox = $('.toggle-status[data-todo-id="' + todo.id + '"]');
-                        if (todo.status === 'completed') {
-                            checkbox.prop('checked', true);
-                        } else {
-                            checkbox.prop('checked', false);
-                        }
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                    // Handle error if needed
-                }
-            });
-        }
-
-        // Fetch todo statuses and set checkboxes when the page loads
-        fetchTodoStatuses();
-
         // Event listener for checkbox change
         $('.toggle-status').on('change', function() {
             var todoId = $(this).data('todo-id');
@@ -272,11 +247,12 @@
 
             // Send AJAX request to toggle the status
             $.ajax({
-                url: '/todos/' + todoId + '/toggle-status',
-                method: 'POST',
+                url: '/todos/' + todoId + '/toggle-completed',
+                method: 'PUT', // Change method to PUT
                 data: {
                     _token: '{{ csrf_token() }}',
-                    status: isChecked ? 'completed' : 'pending'
+                    _method: 'PUT', // Set the method to PUT
+                    completed: isChecked // Send true if checked, false if unchecked
                 },
                 success: function(response) {
                     console.log(response.message);

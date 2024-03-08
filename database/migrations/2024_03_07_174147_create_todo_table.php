@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->boolean('completed')->default(false);
+            $table->boolean('completed')->default(false); // Updated column
             $table->enum('priority', ['Low', 'Medium', 'High'])->nullable();
             $table->timestamp('due_date')->nullable();
-            $table->enum('status', ['Pending', 'In Progress', 'On Hold', 'Completed'])->default('Pending');
             $table->timestamps();
         });
     }
