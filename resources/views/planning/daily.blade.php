@@ -248,11 +248,14 @@
                     <div>
                         <p class="menu-label">Todays Focus</p>
                         @if($todaysFocus)
-                            <p>{{ $todaysFocus->text }}</p>
+                            <p id="todays-focus-text">{{ $todaysFocus->text }}</p>
+                            <!-- Add an edit button -->
+                            <button id="edit-todays-focus" class="button is-small is-link mt-4">Edit</button>
                         @else
                             <p>No focus set for today.</p>
                         @endif
                     </div>
+
 
                     <div style="height: 20px; border-top: solid 1px gray; margin-top: 20px"></div>
 
@@ -293,6 +296,37 @@
     @endsection
 </x-app-layout>
 @include('components.footer')
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const editButton = document.getElementById('edit-todays-focus');
+        const todaysFocusText = document.getElementById('todays-focus-text');
+
+        editButton.addEventListener('click', function () {
+            const newText = prompt('Enter new focus text:');
+            if (newText) {
+                fetch('{{ route("todays-focus.update") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        text: newText
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        todaysFocusText.innerText = newText;
+                        // No alert or message displayed
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        });
+    });
+</script>
 
 <script>
     // Function to handle priority change

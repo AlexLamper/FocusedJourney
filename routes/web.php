@@ -76,10 +76,9 @@ Route::middleware('auth')->get('/planning/daily', function () {
     ]);
 })->name('planning.daily');
 
-
 Route::get('/todays-focus', [TodaysFocusController::class, 'show'])->name('todays-focus.show');
 Route::post('/todays-focus/update', [TodaysFocusController::class, 'update'])->name('todays-focus.update');
-Route::middleware('auth')->post('/todays-focus/create', [TodaysFocusController::class, 'create'])->name('todays-focus.create');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
