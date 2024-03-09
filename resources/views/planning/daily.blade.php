@@ -189,6 +189,31 @@
             cursor: pointer;
         }
 
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            margin: 0 10px;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+
+        .button:hover {
+            background-color: #ff7f6e;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-group {
+            margin-bottom: 50px;
+        }
+
     </style>
 </head>
 <body class="antialiased bg-white">
@@ -197,6 +222,12 @@
     <section class="section">
         <div class="container">
             <h1 class="title">Daily Planner</h1>
+            <div class="button-group">
+                <a href="{{ route('planning.daily') }}" class="button">Daily</a>
+                <a href="{{ route('planning.weekly') }}" class="button">Weekly</a>
+                <a href="{{ route('planning.monthly') }}" class="button">Monthly</a>
+                <a href="{{ route('planning.yearly') }}" class="button">Yearly</a>
+            </div>
             <div class="columns">
                 <div class="column is-8">
                     <!-- Sidebar for time slots -->

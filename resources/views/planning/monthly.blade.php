@@ -21,12 +21,57 @@
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        .box {
+            padding: 20px;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            margin: 0 auto;
+        }
+
+        .planner {
+            display: grid;
+            grid-template-columns: auto 1fr; /* Sidebar for time slots and main section for tasks */
+            gap: 10px;
+        }
+
+        .time-slot {
+            width: 100px;
+            display: inline-block;
+        }
+
+        .task-container {
+            display: grid;
+            grid-template-columns: repeat(24, 1fr); /* 24 columns for 24 hours */
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .form-container {
+            padding: 20px;
+            border-radius: 5px;
+            margin: 0 auto;
+        }
+
+        .form-container .field {
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-list li a {
+            color: #333;
+        }
+
 
         h1 {
             text-align: center;
             margin-bottom: 20px;
+        }
+
+        a{
+            background-color: transparent;
+            text-decoration: none;
         }
 
         /*Create Task Button */
@@ -44,7 +89,6 @@
         }
 
         .button-style:hover {
-            background-color: #ed7261;
             color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -57,13 +101,14 @@
         li {
             margin-bottom: 10px;
             padding: 10px;
-            background-color: #f9f9f9;
+            background-color: white;
             border-radius: 5px;
         }
 
-        .empty-message {
-            text-align: center;
-            color: #888;
+        .timeslot{
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: solid 1px gray;
         }
 
         .task-list {
@@ -72,13 +117,14 @@
         }
 
         .task-card {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
+            padding: 0; /* Remove padding */
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box; /* Include padding and border in the element's total width */
+            border: none; /* Remove border */
         }
 
         .task-content {
@@ -114,12 +160,6 @@
             background-color: #bd222c;
         }
 
-        /* Styles for tasks section */
-        .tasks-section {
-            width: 80%;
-            margin: 0 auto;
-        }
-
         /* Styles for task cards */
         .task-card {
             display: flex;
@@ -134,16 +174,10 @@
         .task-content {
             flex-grow: 1;
         }
-
         /* Styles for task actions */
         .task-actions {
             display: flex;
             align-items: center;
-        }
-
-        /* Styles for priority dropdown */
-        .priority-dropdown {
-            margin-right: 10px;
         }
 
         /* Styles for delete button */
@@ -155,50 +189,69 @@
             cursor: pointer;
         }
 
-        .form-container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
         }
 
-        /* Style input and textarea */
-        .form-container input[type="text"],
-        .form-container textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        /* Style the button */
-        .form-container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
+        .button {
+            margin: 0 10px;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
         }
 
-        /* Hover effect for the button */
-        .form-container button:hover {
-            background-color: #0056b3;
+        .button:hover {
+            background-color: #ff7f6e;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-group {
+            margin-bottom: 50px;
         }
 
     </style>
 </head>
 <body class="antialiased bg-white">
 <x-app-layout>
-    <section class="section">
-        <h1>Monthly Planning</h1>
-    </section>
+    @section('content')
+        <section class="section">
+            <div class="container">
+                <h1 class="title">Monthly Planner</h1>
+                <div class="button-group">
+                    <a href="{{ route('planning.daily') }}" class="button">Daily</a>
+                    <a href="{{ route('planning.weekly') }}" class="button">Weekly</a>
+                    <a href="{{ route('planning.monthly') }}" class="button">Monthly</a>
+                    <a href="{{ route('planning.yearly') }}" class="button">Yearly</a>
+                </div>
+                <div class="columns">
+                    <div class="column is-8">
+                        <!-- Sidebar for time slots -->
+                        <div class="menu">
+                            <p class="menu-label">Time Slots</p>
+                            <ul class="menu-list">
+                                TEST
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div>
+                            <p class="menu-label">Monthly tasks</p>
+                            <!-- Task containers -->
+                            <ul class="task-list mb-4" id="sortable-list">
+                                <p>test</p>
+                            </ul>
+                            <a href="/tasks/create"><button class="button-style" style="background-color: #ff7f6e;">Add a new task</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endsection
 </x-app-layout>
 @include('components.footer')
 
