@@ -196,12 +196,12 @@
         }
 
         .button {
-            margin: 0 10px;
-            border-radius: 20px;
+            border-radius: 5px;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+            background-color: #f7fafc;
         }
 
         .button:hover {
@@ -223,16 +223,27 @@
         <div class="container">
             <h1 class="title">Daily Planner</h1>
             <div class="button-group">
-                <a href="{{ route('planning.daily') }}" class="button">Daily</a>
-                <a href="{{ route('planning.weekly') }}" class="button">Weekly</a>
-                <a href="{{ route('planning.monthly') }}" class="button">Monthly</a>
-                <a href="{{ route('planning.yearly') }}" class="button">Yearly</a>
+                <a href="{{ route('planning.daily') }}" class="button" style="margin: 0 10px;">Daily</a>
+                <a href="{{ route('planning.weekly') }}" class="button" style="margin: 0 10px;">Weekly</a>
+                <a href="{{ route('planning.monthly') }}" class="button" style="margin: 0 10px;">Monthly</a>
+                <a href="{{ route('planning.yearly') }}" class="button" style="margin: 0 10px;">Yearly</a>
             </div>
             <div class="columns">
                 <div class="column is-8">
                     <!-- Sidebar for time slots -->
                     <div class="menu">
-                        <p class="menu-label">Time Slots</p>
+                        <div style="margin-bottom: 10px; display: flex; justify-content: space-between;">
+                            <div style="flex: 1;">
+                                <div>
+                                    <p class="menu-label">Time Slots</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <a href="/tasks/create"><button class="button-style" style="background-color: #ff7f6e; width: auto; height: 15px;">+</button></a>
+                                </div>
+                            </div>
+                        </div>
                         <ul class="menu-list">
                             @foreach ($timeslots as $timeslot)
                                 <li class="timeslot" data-time="{{ $timeslot }}">
@@ -281,7 +292,7 @@
                         @if($todaysFocus)
                             <p id="todays-focus-text">{{ $todaysFocus->text }}</p>
                             <!-- Add an edit button -->
-                            <button id="edit-todays-focus" class="button is-small is-link mt-4">Edit</button>
+                            <button id="edit-todays-focus" class="button mt-4">Edit</button>
                         @else
                             <p>No focus set for today.</p>
                         @endif
