@@ -240,7 +240,11 @@
                             </div>
                             <div>
                                 <div>
-                                    <a href="/tasks/create"><button class="button-style" style="background-color: #ff7f6e; width: auto; height: 15px;">+</button></a>
+                                    <a href="/tasks/create">
+                                        <button class="button-style" style="background-color: #ff7f6e; width: auto; height: 25px; font-size: 12px; display: flex; justify-content: center; align-items: center;">
+                                            <span style="font-size: 12px;">+</span>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -251,33 +255,40 @@
                                     <ul class="task-list">
                                         @foreach ($tasks as $task)
                                             @php
-                                                // Extract the hour part from the task timestamp
-                                                $taskHour = date('H', strtotime($task->timestamp));
-                                                // Extract the hour part from the timeslot
-                                                $timeslotHour = explode(':', $timeslot)[0];
+                                                // Check if the task's timestamp is for today
+                                                $taskDate = date('Y-m-d', strtotime($task->timestamp));
+                                                $todayDate = date('Y-m-d');
                                             @endphp
-                                            @if ($taskHour == $timeslotHour)
-                                                <li class="task-card" data-task-id="{{ $task->id }}">
-                                                    <div class="task-content">
-                                                        <span class="task-name">{{ $task->name }}</span>
-                                                        <span class="task-description">{{ $task->description }}</span>
-                                                        <span class="task-timestamp">{{ $task->timestamp }}</span>
-                                                    </div>
-                                                    <div class="task-actions">
-                                                        <label for="priority">
-                                                            <select name="priority" class="priority-dropdown" data-task-id="{{ $task->id }}">
-                                                                <option value="Low" {{ $task->priority === 'Low' ? 'selected' : '' }}>Low</option>
-                                                                <option value="Medium" {{ $task->priority === 'Medium' ? 'selected' : '' }}>Medium</option>
-                                                                <option value="High" {{ $task->priority === 'High' ? 'selected' : '' }}>High</option>
-                                                            </select>
-                                                        </label>
-                                                        <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="delete-form">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="delete-btn" style="background-color: #ef4444; margin-left: 10px">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </li>
+                                            @if ($taskDate == $todayDate)
+                                                @php
+                                                    // Extract the hour part from the task timestamp
+                                                    $taskHour = date('H', strtotime($task->timestamp));
+                                                    // Extract the hour part from the timeslot
+                                                    $timeslotHour = explode(':', $timeslot)[0];
+                                                @endphp
+                                                @if ($taskHour == $timeslotHour)
+                                                    <li class="task-card" data-task-id="{{ $task->id }}">
+                                                        <div class="task-content">
+                                                            <span class="task-name">{{ $task->name }}</span>
+                                                            <span class="task-description">{{ $task->description }}</span>
+                                                            <span class="task-timestamp">{{ $task->timestamp }}</span>
+                                                        </div>
+                                                        <div class="task-actions">
+                                                            <label for="priority">
+                                                                <select name="priority" class="priority-dropdown" data-task-id="{{ $task->id }}">
+                                                                    <option value="Low" {{ $task->priority === 'Low' ? 'selected' : '' }}>Low</option>
+                                                                    <option value="Medium" {{ $task->priority === 'Medium' ? 'selected' : '' }}>Medium</option>
+                                                                    <option value="High" {{ $task->priority === 'High' ? 'selected' : '' }}>High</option>
+                                                                </select>
+                                                            </label>
+                                                            <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="delete-form">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="delete-btn" style="background-color: #ef4444; margin-left: 10px">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </li>
+                                                @endif
                                             @endif
                                         @endforeach
                                     </ul>
