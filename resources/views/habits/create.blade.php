@@ -66,27 +66,51 @@
 <body class="antialiased bg-white">
 <x-app-layout>
     @section('content')
-        <section class="section">
-                <div class="container">
-                <h1 class="title">Your Habits</h1>
-                <br>
-                    @foreach ($habits as $habit)
-                        <div>
-                            <h2>{{ $habit->name }}</h2>
-                            <p>{{ $habit->description }}</p>
-                            <p>Habit Type: {{ $habit->habit_type }}</p>
-                            <p>Days Tracked: {{ $habit->days_tracked }}</p>
-                            <form action="{{ route('habits.destroy', $habit) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Delete Habit</button>
-                            </form>
-                        </div>
-                    @endforeach
+        <div class="container">
+            <h1 class="title">Create a new habit</h1>
+            <form action="{{ route('habits.store') }}" method="POST">
+                @csrf
+                <div class="field">
+                    <label class="label" for="name">Name</label>
+                    <div class="control">
+                        <input class="input" type="text" id="name" name="name" required>
+                    </div>
+                </div>
 
-                <a href="/habits/create" class="button-style">Create a new habit</a>
-            </div>
-        </section>
+                <div class="field">
+                    <label class="label" for="description">Description</label>
+                    <div class="control">
+                        <textarea class="textarea" id="description" name="description" required></textarea>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="habit_type">Habit Type</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="habit_type" name="habit_type" required>
+                                <option value="21">21</option>
+                                <option value="66">66</option>
+                                <option value="90">90</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="days_tracked">Days Tracked</label>
+                    <div class="control">
+                        <input class="input" type="number" id="days_tracked" name="days_tracked" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-link" type="submit">Create Habit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     @endsection
 </x-app-layout>
 @include('components.footer')

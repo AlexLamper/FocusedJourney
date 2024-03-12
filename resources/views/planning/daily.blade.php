@@ -241,7 +241,7 @@
                             <div>
                                 <div>
                                     <a href="/tasks/create">
-                                        <button class="button-style" style="background-color: #ff7f6e; width: auto; height: 25px; font-size: 12px; display: flex; justify-content: center; align-items: center;">
+                                        <button class="button" style="width: auto; height: 25px; font-size: 12px; display: flex; justify-content: center; align-items: center;">
                                             <span style="font-size: 12px;">+</span>
                                         </button>
                                     </a>
@@ -270,8 +270,12 @@
                                                     <li class="task-card" data-task-id="{{ $task->id }}">
                                                         <div class="task-content">
                                                             <span class="task-name">{{ $task->name }}</span>
-                                                            <span class="task-description">{{ $task->description }}</span>
-                                                            <span class="task-timestamp">{{ $task->timestamp }}</span>
+                                                            <span class="task-description mb-2">{{ $task->description }}</span>
+                                                            <span class="task-timestamp">
+                                                                <strong style="margin-right: 8px">{{ date('H:i', strtotime($task->timestamp)) }}</strong>
+                                                                {{ date('Y-m-d', strtotime($task->timestamp)) }}
+                                                            </span>
+
                                                         </div>
                                                         <div class="task-actions">
                                                             <label for="priority">
