@@ -71,20 +71,20 @@
                 <h1 class="title">Your Habits</h1>
                 <br>
                     @foreach ($habits as $habit)
-                        <div>
-                            <h2>{{ $habit->name }}</h2>
+                        <div class="box" style="border: 1px solid #dbdbdb; border-radius: 5px; padding: 20px; margin-bottom: 20px;">
+                            <h2 class="title is-4"><a href="{{ route('habits.show', $habit) }}">{{ $habit->name }}</a></h2>
                             <p>{{ $habit->description }}</p>
-                            <p>Habit Type: {{ $habit->habit_type }}</p>
-                            <p>Days Tracked: {{ $habit->days_tracked }}</p>
+                            <p><strong>Habit Type:</strong> {{ $habit->habit_type }}</p>
+                            <p><strong>Days Tracked:</strong> {{ $habit->days_tracked }}</p>
                             <form action="{{ route('habits.destroy', $habit) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">Delete Habit</button>
+                                <button class="button is-danger is-small" type="submit">Delete Habit</button>
                             </form>
                         </div>
                     @endforeach
 
-                <a href="/habits/create" class="button-style">Create a new habit</a>
+                    <a href="/habits/create" class="button-style">Create a new habit</a>
             </div>
         </section>
     @endsection
