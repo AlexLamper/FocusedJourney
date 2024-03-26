@@ -33,8 +33,6 @@ Route::get('/focus-sessions', [FocusSessionController::class, 'index'])->name('f
 Route::post('/focus-sessions', [FocusSessionController::class, 'store'])->name('focus-sessions.store');
 Route::get('/start-focus', [FocusSessionController::class, 'start'])->name('start-focus');
 
-Route::get('/habits', [HabitsController::class, 'index'])->name('habits.index');
-
 Route::middleware('auth')->group(function () {
     Route::get('/todo', [TodoController::class, 'index'])->name('todo');
     Route::post('/todo', [TodoController::class, 'store']);
@@ -80,9 +78,12 @@ Route::middleware('auth')->get('/planning/daily', function () {
     ]);
 })->name('planning.daily');
 
-Route::resource('habits', HabitsController::class);
-Route::get('/habits/create', [HabitsController::class, 'create'])->name('habits.create');
-Route::get('/habits/{id}', [HabitsController::class, 'show'])->name('habits.show');
+Route::middleware('auth')->group(function () {
+    Route::get('/habits', [HabitsController::class, 'index'])->name('habits.index');
+    Route::resource('habits', HabitsController::class);
+    Route::get('/habits/create', [HabitsController::class, 'create'])->name('habits.create');
+    Route::get('/habits/{id}', [HabitsController::class, 'show'])->name('habits.show');
+});
 
 Route::get('/todays-focus', [TodaysFocusController::class, 'show'])->name('todays-focus.show');
 Route::post('/todays-focus/update', [TodaysFocusController::class, 'update'])->name('todays-focus.update');

@@ -71,8 +71,9 @@
                 <h1 class="title">Your Habits</h1>
                 <br>
                     @foreach ($habits as $habit)
+                        <a href="{{ route('habits.show', $habit) }}">
                         <div class="box" style="border: 1px solid #dbdbdb; border-radius: 5px; padding: 20px; margin-bottom: 20px;">
-                            <h2 class="title is-4"><a href="{{ route('habits.show', $habit) }}">{{ $habit->name }}</a></h2>
+                            <h2 class="title is-4">{{ $habit->name }}</h2>
                             <p>{{ $habit->description }}</p>
                             <p><strong>Habit Type:</strong> {{ $habit->habit_type }}</p>
                             <p><strong>Days Tracked:</strong> {{ $habit->days_tracked }}</p>
@@ -82,6 +83,7 @@
                                 <button class="button is-danger is-small" type="submit">Delete Habit</button>
                             </form>
                         </div>
+                        </a>
                     @endforeach
 
                     <a href="/habits/create" class="button-style">Create a new habit</a>

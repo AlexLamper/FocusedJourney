@@ -197,7 +197,7 @@
 
         .button {
             margin: 0 10px;
-            border-radius: 20px;
+            border-radius: 5px;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
