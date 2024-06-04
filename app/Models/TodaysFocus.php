@@ -4,16 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class TodaysFocus extends Model
 {
+    protected $table = 'todays_focus';
+
     protected $fillable = [
-        'name',
-        'description',
-        'priority',
-        'timestamp',
-        'user_id',
+        'text',
     ];
 
+    // Define the relationship with the User model
     public function user()
     {
         return $this->belongsTo(User::class);

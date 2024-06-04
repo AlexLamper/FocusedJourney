@@ -9,20 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->integer('order')->default(0);
+            if (!Schema::hasColumn('tasks', 'user_id')) {
+                $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            }
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->dropColumn('order');
+            if (Schema::hasColumn('tasks', 'user_id')) {
+                $table->dropForeign(['user_id']);
+                $table->dropColumn('user_id');
+            }
         });
     }
 };

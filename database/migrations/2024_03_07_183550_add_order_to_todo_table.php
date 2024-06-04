@@ -9,19 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->integer('order')->default(0);
+        Schema::table('todo', function (Blueprint $table) {
+            $table->integer('order')->nullable();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::table('tasks', function (Blueprint $table) {
+        Schema::table('todo', function (Blueprint $table) {
             $table->dropColumn('order');
         });
     }

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+
     public function index()
     {
         // Retrieve the authenticated user, if any
@@ -24,8 +26,14 @@ class TaskController extends Controller
             ->orderBy('order')
             ->get();
 
-        // Return the tasks to the tasks.blade.php view
-        return view('tasks.index', ['tasks' => $tasks]);
+        // Generate timeslots array
+        $timeslots = [];
+        for ($hour = 0; $hour < 24; $hour++) {
+            $timeslots[] = sprintf('%02d:00', $hour);
+        }
+
+        // Return the tasks and timeslots to the tasks.blade.php view
+        return view('tasks.index', compact('tasks', 'timeslots'));
     }
 
     public function store(Request $request)
@@ -35,6 +43,7 @@ class TaskController extends Controller
             'name' => 'required|max:255',
             'description' => 'nullable|max:255',
             'priority' => 'nullable|in:Low,Medium,High',
+            'timestamp' => 'required|date_format:Y-m-d\TH:i'
         ]);
 
         // Create a new Task instance with the validated data
@@ -42,6 +51,7 @@ class TaskController extends Controller
         $task->name = $request->name;
         $task->description = $request->description;
         $task->priority = $request->priority;
+        $task->timestamp = $request->timestamp;
 
         // Associate the task with the authenticated user
         $task->user_id = auth()->id();
@@ -50,7 +60,7 @@ class TaskController extends Controller
         $task->save();
 
         // Redirect back to the task list page with a success message
-        return redirect('/tasks')->with('success', 'Task created successfully!');
+        return redirect('/planning')->with('success', 'Task created successfully!');
     }
 
     public function create()
@@ -72,7 +82,7 @@ class TaskController extends Controller
         // Delete the task
         $task->delete();
 
-        return redirect()->route('tasks')->with('success', 'Task deleted successfully.');
+        return back()->with('success', 'Task deleted successfully.');
     }
 
     public function updatePriority(Request $request, Task $task)

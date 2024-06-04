@@ -27,6 +27,7 @@
 </head>
 <body class="antialiased">
     <x-app-layout>
+        @section('content')
         <div class="container custom-margin-top p-6 bg-white" style="height: 60vh">
             <div class="columns">
                 <!-- Left Column (2/3 width) -->
@@ -111,6 +112,7 @@
         <div class="line-container">
             <div class="line"></div>
         </div>
+        @endsection
     </x-app-layout>
     @include('components.footer')
 </body>

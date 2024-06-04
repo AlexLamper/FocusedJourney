@@ -55,4 +55,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+
+    public function todaysFocus()
+    {
+        return $this->hasOne(TodaysFocus::class);
+    }
+
+    public function habits()
+    {
+        return $this->hasMany(Habit::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

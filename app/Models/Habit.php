@@ -2,17 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class Habit extends Model
 {
-    protected $fillable = [
-        'name',
-        'description',
-        'priority',
-        'timestamp',
-        'user_id',
-    ];
+    use HasFactory;
 
     public function user()
     {
