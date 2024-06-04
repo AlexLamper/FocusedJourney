@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\ChapterController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SectionController;
-use App\Http\Controllers\TopicController;
-use App\Http\Controllers\TodoController;
 use App\Http\Controllers\FocusSessionController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\PlanningController;
+use App\Http\Controllers\TodaysFocusController;
+use App\Http\Controllers\HabitsController;
+use App\Http\Controllers\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,22 +28,9 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::resource('topics', TopicController::class);
-Route::resource('sections', SectionController::class);
-Route::resource('chapters', ChapterController::class);
-
-Route::prefix('topics')->group(function () {
-    Route::get('/', [TopicController::class, 'index'])->name('topics.index');
-    Route::get('/{topic}', [TopicController::class, 'show'])->name('topics.show');
-
-    Route::prefix('{topic}/sections')->group(function () {
-        Route::get('/{section}', [SectionController::class, 'show'])->name('sections.show');
-
-        Route::prefix('{section}/chapters')->group(function () {
-            Route::get('/{chapter}', [ChapterController::class, 'show'])->name('chapters.show');
-        });
-    });
-});
+Route::get('/focus-sessions', [FocusSessionController::class, 'index'])->name('focus-sessions.index');
+Route::post('/focus-sessions', [FocusSessionController::class, 'store'])->name('focus-sessions.store');
+Route::get('/start-focus', [FocusSessionController::class, 'start'])->name('start-focus');
 
 Route::middleware('auth')->group(function () {
     Route::get('/todo', [TodoController::class, 'index'])->name('todo');
@@ -55,21 +43,54 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
+    Route::post('/tasks', [TaskController::class, 'store']);
+    Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+    Route::post('/tasks/update-order', [TaskController::class, 'updateOrder']);
+    Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+    Route::put('/tasks/{task}', [TaskController::class, 'updatePriority'])->name('tasks.updatePriority');
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('focus-sessions', FocusSessionController::class);
-    Route::get('/start-focus', [FocusSessionController::class, 'start'])->name('start-focus');
-    Route::get('/planning', function () {
-        return view('planning');
+    Route::middleware('auth')->get('/planning', function () {
+        return redirect()->route('planning.daily');
     })->name('planning');
-    Route::get('/habits', function () {
-        return view('habits.index');
-    })->name('habits.index');
+    Route::get('/planning/weekly', [PlanningController::class, 'weekly'])->name('planning.weekly');
+    Route::get('/planning/monthly', [PlanningController::class, 'monthly'])->name('planning.monthly');
+    Route::get('/planning/yearly', [PlanningController::class, 'yearly'])->name('planning.yearly');
+});
 
+Route::middleware('auth')->get('/planning/daily', function () {
+    // Call the show() method of TodaysFocusController to get the today's focus
+    $todaysFocusController = new TodaysFocusController();
+    $todaysFocus = $todaysFocusController->show();
+
+    // Call the daily() method of PlanningController to get tasks and timeslots
+    $planningController = new PlanningController();
+    $timeslotsAndTasks = $planningController->daily();
+
+    // Pass the data to the view
+    return view('planning.daily', [
+        'todaysFocus' => $todaysFocus,
+        'timeslots' => $timeslotsAndTasks['timeslots'],
+        'tasks' => $timeslotsAndTasks['tasks'],
+    ]);
+})->name('planning.daily');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/habits', [HabitsController::class, 'index'])->name('habits.index');
+    Route::resource('habits', HabitsController::class);
+    Route::get('/habits/create', [HabitsController::class, 'create'])->name('habits.create');
+    Route::get('/habits/{id}', [HabitsController::class, 'show'])->name('habits.show');
+});
+
+Route::get('/todays-focus', [TodaysFocusController::class, 'show'])->name('todays-focus.show');
+Route::post('/todays-focus/update', [TodaysFocusController::class, 'update'])->name('todays-focus.update');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
