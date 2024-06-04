@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\FocusSessionController;
+use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SectionController;
+use App\Http\Controllers\TopicController;
+use App\Http\Controllers\TodoController;
+use App\Http\Controllers\FocusSessionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\PlanningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,30 +27,49 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/focus-sessions', [FocusSessionController::class, 'index'])->name('focus-sessions.index');
-Route::post('/focus-sessions', [FocusSessionController::class, 'store'])->name('focus-sessions.store');
+Route::resource('topics', TopicController::class);
+Route::resource('sections', SectionController::class);
+Route::resource('chapters', ChapterController::class);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
-    Route::post('/tasks', [TaskController::class, 'store']);
-    Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
-    Route::post('/tasks/update-order', [TaskController::class, 'updateOrder']);
-    Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
-    Route::put('/tasks/{task}', [TaskController::class, 'updatePriority'])->name('tasks.updatePriority');
+Route::prefix('topics')->group(function () {
+    Route::get('/', [TopicController::class, 'index'])->name('topics.index');
+    Route::get('/{topic}', [TopicController::class, 'show'])->name('topics.show');
+
+    Route::prefix('{topic}/sections')->group(function () {
+        Route::get('/{section}', [SectionController::class, 'show'])->name('sections.show');
+
+        Route::prefix('{section}/chapters')->group(function () {
+            Route::get('/{chapter}', [ChapterController::class, 'show'])->name('chapters.show');
+        });
+    });
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/planning', [PlanningController::class, 'index'])->name('planning');
-    Route::get('/planning/daily', [PlanningController::class, 'daily'])->name('planning.daily');
-    Route::get('/planning/weekly', [PlanningController::class, 'weekly'])->name('planning.weekly');
-    Route::get('/planning/monthly', [PlanningController::class, 'monthly'])->name('planning.monthly');
-    Route::get('/planning/yearly', [PlanningController::class, 'yearly'])->name('planning.yearly');
+    Route::get('/todo', [TodoController::class, 'index'])->name('todo');
+    Route::post('/todo', [TodoController::class, 'store']);
+    Route::get('/todo/create', [TodoController::class, 'create'])->name('todo.create');
+    Route::post('/todo/update-order', [TodoController::class, 'updateOrder']);
+    Route::delete('/todo/{todo}', [TodoController::class, 'destroy'])->name('todo.destroy');
+    Route::put('/todo/{todo}', [TodoController::class, 'updatePriority'])->name('todo.updatePriority');
+    Route::put('/todos/{todo}/toggle-completed', [TodoController::class, 'toggleCompleted'])->name('todos.toggleCompleted');
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::resource('focus-sessions', FocusSessionController::class);
+    Route::get('/start-focus', [FocusSessionController::class, 'start'])->name('start-focus');
+    Route::get('/planning', function () {
+        return view('planning');
+    })->name('planning');
+    Route::get('/habits', function () {
+        return view('habits.index');
+    })->name('habits.index');
+
 });
 
 require __DIR__.'/auth.php';

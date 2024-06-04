@@ -14,7 +14,6 @@
         .main-section {
             position: relative;
             height: 70vh;
-            background-color: #f9f9f9;
         }
 
         .main-content {
@@ -36,6 +35,7 @@
 </head>
 <body class="antialiased bg-white">
     <x-app-layout>
+        @section('content')
         <!-- Hero Section -->
         <section class="hero is-fullheight section">
             <div class="hero-body">
@@ -43,7 +43,7 @@
                     <div class="columns">
                         <div class="column is-two-thirds">
                             <h1 class="mb-2" style="font-size: 2.5rem; font-weight: bold; color: black">
-                                About Focused Journey
+                                About Scriptu
                             </h1>
                             <p class="text-gray-600 is-size-4 mb-5" style="font-size: 1.4rem;">
                                 Unlock Your Potential with Precision Focus
@@ -99,8 +99,6 @@
             </div>
         </section>
 
-        <hr style="border-top: solid 1px gray">
-
         <div class="main-section">
             <div class="main-content" style="font-size: larger">
                 <h2 class="title is-8" style="color: black; margin-bottom: 30px">Why Focus Matters</h2>
@@ -111,8 +109,6 @@
                 <p>Ultimately, mastering the art of focus is a skill that can transform your life. By cultivating mindfulness, setting clear goals, and practicing disciplined attention, you can unlock your full potential and accomplish extraordinary feats.</p>
             </div>
         </div>
-
-        <hr style="border-top: solid 1px gray">
 
         <div class="section features-section mt-16">
             <div class="container">
@@ -145,6 +141,7 @@
                 </div>
             </div>
         </div>
+        @endsection
     </x-app-layout>
     @include('components.footer')
 </body>
