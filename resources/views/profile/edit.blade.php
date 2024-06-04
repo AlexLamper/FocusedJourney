@@ -36,6 +36,6 @@
     </div>
     @endsection
 </x-app-layout>
-@include('components.footer')
+@include('scriptu.resources.views.components.footer')
 </body>
 </html>

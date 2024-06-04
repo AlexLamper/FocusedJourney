@@ -26,7 +26,7 @@ class FocusSessionController extends Controller
      * Store a newly created focus session in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
     public function store(Request $request)
     {

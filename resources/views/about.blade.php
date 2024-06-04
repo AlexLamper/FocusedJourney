@@ -14,7 +14,6 @@
         .main-section {
             position: relative;
             height: 70vh;
-            background-color: #f9f9f9;
         }
 
         .main-content {
@@ -44,7 +43,7 @@
                     <div class="columns">
                         <div class="column is-two-thirds">
                             <h1 class="mb-2" style="font-size: 2.5rem; font-weight: bold; color: black">
-                                About Focused Journey
+                                About Scriptu
                             </h1>
                             <p class="text-gray-600 is-size-4 mb-5" style="font-size: 1.4rem;">
                                 Unlock Your Potential with Precision Focus

@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('todays_focus', function (Blueprint $table) {
-            if (!Schema::hasColumn('todays_focus', 'user_id')) {
+        Schema::table('tasks', function (Blueprint $table) {
+            if (!Schema::hasColumn('tasks', 'user_id')) {
                 $table->foreignId('user_id')->constrained()->onDelete('cascade');
             }
         });
@@ -20,8 +20,8 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::table('todays_focus', function (Blueprint $table) {
-            if (Schema::hasColumn('todays_focus', 'user_id')) {
+        Schema::table('tasks', function (Blueprint $table) {
+            if (Schema::hasColumn('tasks', 'user_id')) {
                 $table->dropForeign(['user_id']);
                 $table->dropColumn('user_id');
             }
