@@ -121,5 +121,4 @@ Route::post('/login', [
     'middleware' => 'throttle:5,1', // Max. 5 login tries per minute.
 ]);
 
-
 require __DIR__.'/auth.php';
