@@ -16,6 +16,8 @@ return [
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
+        'provider' => 'users',
+        'throttle' => 'login',
     ],
 
     /*

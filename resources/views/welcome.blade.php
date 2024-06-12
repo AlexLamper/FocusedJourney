@@ -62,11 +62,21 @@
                                 </div>
                             @endguest
                         </div>
-                        <div class="field">
-                            <div class="control">
-                                <button type="submit" class="border-none p-3 rounded-md text-white" style="background-color: #ff7f6e">Start Focus Session</button>
+                        @auth
+                            <div class="field">
+                                <div class="control">
+                                    <button type="submit" class="border-none p-3 rounded-md text-white" style="background-color: #ff7f6e">Start Focus Session</button>
+                                </div>
                             </div>
-                        </div>
+                        @endauth
+
+                        @guest
+                            <div class="field">
+                                <div class="control">
+                                    <button type="submit" class="border-none p-3 rounded-md text-white" style="background-color: #ff7f6e" disabled>Start Focus Session</button>
+                                </div>
+                            </div>
+                        @endguest
                     </form>
                 </div>
 
