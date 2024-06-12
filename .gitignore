@@ -1,3 +1,4 @@
+# Laravel specific
 /.phpunit.cache
 /node_modules
 /public/build
@@ -5,15 +6,33 @@
 /public/storage
 /storage/*.key
 /vendor
+
+# Environment specific
 .env
 .env.backup
 .env.production
+
+# PHPUnit
 .phpunit.result.cache
+
+# Homestead
 Homestead.json
 Homestead.yaml
+
+# Composer
 auth.json
+
+# NPM and Yarn
 npm-debug.log
 yarn-error.log
+
+# Fleet
 /.fleet
+
+# IDE specific
 /.idea
 /.vscode
+
+# Exclude large files
+laravel_project.zip
+focusedjourney_v1.zip
