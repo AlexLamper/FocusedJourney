@@ -38,7 +38,7 @@ The Focused Journey website is a web application made usign Laravel. It provides
 
 ## Project Status
 The application is live and maintained to ensure the website is up to date and available.
-- [focusedjourney.net](https://www.lucerny.nl) - click to visit the website.
+- [focusedjourney.xyz](https://www.focusedjourney.xyz) - click to visit the website.
 
 ## License
 This project is licensed under the [WTFPL License](LICENSE).
