@@ -5,6 +5,26 @@
 ## General Information
 The Focused Journey website is a web application made usign Laravel. It provides focus sessions for users to create to their own desire, from changing the font to the background image.
 
+#£ Beveiligingsfeatures Controle Instructies (Docenten)
+
+## HTTPS Redirect Controle
+Open een webbrowser en ga naar: focusedjourney.xyz en kijk of de url gelijk redirect naar https://focusedjourney.xyz en dus secure is.
+
+### Sessiebeheer Controle
+1. Log in op de applicatie met je gebruikersaccount.
+2. Open de ontwikkelaarstools van je browser (meestal via F12 of rechtermuisklik -> Inspecteren).
+3. Ga naar het tabblad 'Application' of 'Storage' en bekijk de sessiecookie. Controleer of de sessiecookie wordt versleuteld weergegeven.
+
+### CSRF Bescherming Controle
+1. Log in op de applicatie.
+2. Ga naar een formulierpagina (bijv. een pagina waar je een nieuwe habit of todo toe kan voegen).
+3. Vul de gegevens in en klik op 'Submit' zonder de pagina te herladen of CSRF-token te wijzigen.
+4. Controleer of de aanvraag succesvol is. (Een succesvolle verzending betekent dat CSRF-bescherming werkt.)
+
+### IDOR Voorkomen Controle
+1. Benader de applicatie zonder in te loggen.
+2. Probeer toegang te krijgen tot een resource die niet toegankelijk is zonder account, zoals de /profile url.
+
 ## Technologies Used
 - Laravel
 - Blade
